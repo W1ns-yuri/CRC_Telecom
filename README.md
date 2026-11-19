@@ -1,34 +1,35 @@
-# CRC Telecom — сайт
+# CRC Telecom — website
 
-Двуязычный сайт (канадский французский / английский) для CRC Telecom, интегратора систем связи и безопасности.
+Bilingual (Canadian French / English) website for CRC Telecom, a communications and security integrator serving Quebec, Northwestern Ontario, New York and Vermont.
 
-## Что сейчас в репозитории
+**Stack:** Next.js 15 · React 19 · TypeScript · Tailwind CSS 4 · next-intl · GSAP + Lenis · Zod · Sanity (CMS, planned) · Vercel.
+Rationale and answers to the brief: [`docs/STACK.md`](docs/STACK.md). Code walkthrough in Russian: [`docs/GUIDE_RU.md`](docs/GUIDE_RU.md).
 
-| Папка | Что это |
-|---|---|
-| `concept/index.html` | Живой прототип главной страницы (один HTML-файл, GSAP + ScrollTrigger + Lenis с CDN). Открывается прямо в браузере. |
-| `brand/` | Лого-пак от заказчика, используется как есть (без перекраски и эффектов). |
+## Run locally
 
-Прототип — референс по дизайну и анимациям. Продакшен-версия будет на Next.js.
+```bash
+npm install
+cp .env.example .env.local   # optional: keys for Turnstile, Resend, Sanity, GA4
+npm run dev                  # http://localhost:3000 → /fr
+```
 
-## Целевой стек
+## What's built
 
-- **Next.js (App Router) + TypeScript**
-- **Tailwind CSS** с токенами из брендбука: Navy `#0B2545`, Teal `#14B8A6`, Light Teal `#5EEAD4`, Slate `#475569`, Light Grey `#F1F5F9`; шрифты Poppins + Inter
-- **GSAP + ScrollTrigger + Lenis** для скролл-анимаций, **Motion** для микро-взаимодействий
-- **next-intl**: `/fr` по умолчанию (fr-CA), `/en`
-- **shadcn/ui** только для форм, перекрашенный под бренд
-- **Sanity** как CMS, чтобы сотрудники редактировали контент без разработчика
-- Деплой на **Vercel**
+- **Pages (FR + EN, localized URLs):** Home, Services overview + 9 service pages from one template, Industries + 5 pages, Service Areas + 4 pages (unique text each), About, Support, Contact / Request a Quote, Privacy, Cookies, Terms, Accessibility.
+- **Home:** signal-wave hero (canvas), trust bar, filterable 9-service grid, pinned "Why CRC" section, industries (Government first), interactive dot-matrix service-area map, CTA band.
+- **Service template:** hero, what we offer, benefits, use cases, brands, 5-step process, FAQ, quote form pre-filled with the service, related services.
+- **Forms:** quote (9 service checkboxes, pre-selection from service pages and `?service=`), support (urgency, photo upload). Zod validation client + server, honeypot, Cloudflare Turnstile, email to office@ and confirmation in the visitor's language (Resend), storage in Sanity.
+- **Law 25 cookie banner:** accept / refuse / choose by category, reopen from footer, choices logged via `/api/consent`; GA4 loads only after consent; Google Map on Contact loads only on click.
+- **SEO:** per-page title/description, canonical, hreflang fr-CA / en-CA / x-default, LocalBusiness, Service, FAQPage and BreadcrumbList JSON-LD, sitemap.xml, robots.txt.
+- **Accessibility:** skip link, one H1 per page, keyboard-operable menus, visible focus, labelled fields with error messages, reduced-motion support.
+- **Brand:** logo files used as supplied (`public/brand/`), brand palette and Poppins + Inter.
 
-## План
+`concept/index.html` is the original single-file design prototype, kept for reference.
 
-1. Арт-дирекшн и токены
-2. Главная на Next.js
-3. Шаблон страницы услуги (9 страниц из данных)
-4. Формы, cookie-баннер (Loi 25), остальные страницы, юридические страницы
-5. SEO, деплой, документ с обоснованием стека
+## Content still to come from CRC Telecom
 
-## Контакты компании (из брифа)
+Business hours, support/emergency info, company history, certifications, partner logos, project photos and testimonials, city lists per region, privacy officer name, social links. These spots are marked "à confirmer / to be confirmed".
 
-5590 av Royalmount, Mont-Royal, QC H4P 1H7, Canada · office@crc-telecom.ca · 647-367-1022
+## Deploy
+
+Import this repository in Vercel (framework is detected automatically), add the variables from `.env.example`, deploy.

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 140" width="704" height="280">
+<rect width="352" height="140" fill='#0B2545'/>
+<g transform="translate(10,10)">
+  <rect x="0" y="0" width="120" height="120" rx="26" fill="#FFFFFF"/>
+  <circle cx="38" cy="82" r="9" fill="#14B8A6"/>
+  <path d="M38 56 A26 26 0 0 1 64 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round"/>
+  <path d="M38 36 A46 46 0 0 1 84 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
+  <path d="M38 16 A66 66 0 0 1 104 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round" opacity="0.6"/>
+</g>
+<text x="150" y="86" font-family="Poppins" font-weight="700" font-size="72" letter-spacing="2" fill="#FFFFFF">CRC</text>
+<text x="153" y="120" font-family="Inter" font-weight="600" font-size="24" letter-spacing="11.5" fill="#5EEAD4">TELECOM</text>
+</svg>
