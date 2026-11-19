@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Бренд-токены из брифа. Радиусы выведены из плитки логотипа (rx 26 / 120 ≈ 22%):
+   крупные медиа-блоки — 20px, карточки/инпуты — 10px, чипы — 6px. Пилюля только у переключателя языка. */
+@theme {
+  --color-navy: #0b2545;
+  --color-navy-2: #0f2e55;
+  --color-navy-3: #163a66;
+  --color-teal: #14b8a6;
+  --color-teal-light: #5eead4;
+  --color-slate: #475569;
+  --color-grey: #f1f5f9;
+  --color-line: #dce3ec;
+  --color-ink-soft: #5b6b80;
+  --color-on-navy: #c9d6e6;
+  --color-on-navy-soft: #9fb3cb;
+
+  --font-display: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-chip: 6px;
+  --radius-ctl: 10px;
+  --radius-media: 20px;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+  body { @apply bg-white text-slate font-sans antialiased; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3, h4 { @apply font-display text-navy; text-wrap: balance; letter-spacing: -0.015em; }
+  :focus-visible { outline: 3px solid var(--color-teal); outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: var(--color-teal-light); color: var(--color-navy); }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1240px] px-4 sm:px-6 lg:px-8; }
+  .wrap.grid > *, .wrap > .grid > * { min-width: 0; }
+  .eyebrow { @apply font-sans text-[12.5px] font-semibold uppercase tracking-[0.18em] text-navy; }
+  .on-dark .eyebrow { @apply text-teal-light; }
+  .h-section { @apply text-[clamp(30px,4vw,52px)] font-semibold leading-[1.06] tracking-[-0.025em]; }
+  .lede { @apply max-w-[58ch] text-[17.5px]; }
+
+  .btn { @apply inline-flex items-center gap-2.5 whitespace-nowrap rounded-ctl px-5 py-3.5 text-[15.5px] font-semibold leading-none no-underline transition-[background-color,color,transform] duration-300; }
+  .btn svg { @apply size-[18px] transition-transform duration-300; }
+  .btn:hover svg { transform: translateX(4px); }
+  .btn-teal { @apply bg-teal text-navy hover:bg-teal-light; }
+  .btn-navy { @apply bg-navy text-white hover:bg-navy-3; }
+  .btn-ghost { @apply text-white ring-[1.5px] ring-white/40 ring-inset hover:text-teal-light hover:ring-teal-light; }
+  .btn-outline { @apply text-navy ring-[1.5px] ring-navy ring-inset hover:bg-navy hover:text-white; }
+
+  .chip { @apply inline-flex items-center rounded-chip border border-line bg-white px-2.5 py-1 text-[12.5px] text-navy; }
+  .link { @apply font-medium text-navy underline decoration-teal decoration-2 underline-offset-4 hover:decoration-navy; }
+  .on-dark .link { @apply text-teal-light decoration-teal-light/50 hover:decoration-teal-light; }
+
+  .prose-legal h2 { @apply mt-10 mb-3 text-2xl font-semibold; }
+  .prose-legal p, .prose-legal li { @apply max-w-[70ch]; }
+  .prose-legal ul { @apply my-3 list-disc pl-6; }
+  .prose-legal p + p { @apply mt-3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

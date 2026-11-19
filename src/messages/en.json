@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "title": "CRC Telecom | Business Communications & Security",
+    "description": "Phone systems, two-way radios, Wi-Fi, cabling, cameras, access control, satellite and fleet tracking across Quebec, Northwestern Ontario, New York and Vermont."
+  },
+  "a11y": { "skip": "Skip to content", "menu": "Menu", "close": "Close", "lang": "Language" },
+  "nav": {
+    "home": "Home", "services": "Services", "allServices": "All services", "industries": "Industries", "areas": "Service Areas",
+    "about": "About", "support": "Support", "contact": "Contact", "quote": "Request a Quote", "call": "Call"
+  },
+  "common": {
+    "learnMore": "Learn more", "seeAll": "See all", "toConfirm": "to be confirmed", "suppliedByCrc": "supplied by CRC Telecom",
+    "headOffice": "Head office", "phone": "Phone", "email": "Email", "hours": "Business hours", "servicesUsed": "Services used"
+  },
+  "home": {
+    "eyebrow": "Communications & security integrator",
+    "h1a": "Business communications and security, installed and supported by",
+    "h1b": "one local team.",
+    "sub": "Phone systems, two-way radios, Wi-Fi, cabling, cameras, access control, satellite and fleet tracking for commercial and government clients across Quebec, Northwestern Ontario, New York and Vermont.",
+    "ctaServices": "Our Services",
+    "quickTitle": "Talk to a technician",
+    "quickText": "A project, an outage, a question? Call or write to us.",
+    "photoNote": "Photo of a CRC technician or vehicle to be supplied",
+    "trust": ["Head office in Mont-Royal", "Commercial and government clients", "Service in French and English", "One point of contact"],
+    "trustSlots": "Years in business, certifications and partners",
+    "slotYears": "Years", "slotCert": "Certification", "slotPartner": "Partner",
+    "servicesH": "Voice, radio, network, security and fleet. One partner.",
+    "servicesP": "We supply, design, install and maintain every system. You deal with the same team from the first site survey through to support.",
+    "filterAll": "All",
+    "whyEyebrow": "Why CRC Telecom",
+    "whyH": "What changes when one team handles everything.",
+    "why": [
+      { "t": "One partner for all your systems", "d": "Phones, radio, network, security and fleet. One contact, one invoice, one team that knows your site." },
+      { "t": "Certified technicians", "d": "Clean installations, tested and documented to manufacturer standards." },
+      { "t": "Remote and northern regions", "d": "We reach the job sites, camps and communities others don't serve." },
+      { "t": "Ongoing support and maintenance", "d": "After installation, the same team handles maintenance, repairs and upgrades." }
+    ],
+    "indH": "Industries we serve",
+    "indP": "From town halls to mining camps, every sector has its own constraints.",
+    "mapH": "Four regions, one local team.",
+    "mapP": "From Greater Montreal to Northwestern Ontario, our technicians go where your teams work, including remote areas.",
+    "mapNote": "City list for each region to be confirmed by CRC Telecom.",
+    "mapLabel": "Map of service areas: Quebec, Northwestern Ontario, New York and Vermont",
+    "projectsH": "Projects and testimonials",
+    "projectsP": "This section will show real projects and testimonials, published with clients' written permission.",
+    "ctaH": "Planning a new site or upgrade?",
+    "ctaP": "Book a free site assessment. A technician visits your premises and gives you a clear recommendation.",
+    "ctaBtn": "Book a free site assessment"
+  },
+  "service": {
+    "offerH": "What we offer", "benefitsH": "What you gain", "useH": "Typical clients and use cases",
+    "brandsH": "Brands and equipment", "brandsP": "Brand list and partner logos to be supplied by CRC Telecom.",
+    "processH": "How we work",
+    "process": [
+      { "t": "Assessment", "d": "Site visit and needs analysis." },
+      { "t": "Design & quote", "d": "A clear solution with a detailed price." },
+      { "t": "Installation", "d": "Work scheduled to cause as little disruption as possible." },
+      { "t": "Training", "d": "Your teams can use the system from day one." },
+      { "t": "Support", "d": "Maintenance, repairs and upgrades." }
+    ],
+    "faqH": "Frequently asked questions", "quoteH": "Get a quote for this service",
+    "quoteP": "The form is already filled in with this service. Add your project details.",
+    "relatedH": "Related services", "allH": "All our services", "allP": "Nine services, one team to install and maintain them."
+  },
+  "industries": { "h": "Industries", "p": "Solutions fitted to the realities of each sector.", "challengesH": "Your challenges", "solveH": "Services that solve them", "projectH": "Project example", "projectP": "A real project will be added with the client's permission.", "govH": "Tenders and compliance" },
+  "areas": { "h": "Service Areas", "p": "Four regions, one team. Each region has its own realities.", "placesH": "Areas covered", "servicesH": "Popular services in the region", "ctaH": "A project in the region?", "langs": "Service languages" },
+  "about": {
+    "h": "About CRC Telecom",
+    "lead": "CRC Telecom is a communications and security systems integrator for commercial and government clients. One team, based in Mont-Royal, supplies, installs and maintains phones, radio, network, security and fleet tracking.",
+    "missionH": "Our mission",
+    "mission": "Give our clients one reliable partner for all their systems, all the way to remote regions.",
+    "valuesH": "Our values",
+    "values": [{ "t": "Reliability", "d": "Systems that work, and a team that answers." }, { "t": "Clarity", "d": "Simple quotes, no jargon." }, { "t": "Local", "d": "A local team that knows your sites." }],
+    "storyH": "Our story", "story": "Company history and year founded to be supplied by CRC Telecom.",
+    "teamH": "The team", "team": "Team photos to be supplied.",
+    "credsH": "Certifications, licences and insurance", "creds": "List to be supplied by CRC Telecom.",
+    "partnersH": "Partners and manufacturers", "partners": "Logos to be supplied, with manufacturers' permission."
+  },
+  "support": {
+    "h": "Technical Support", "p": "System down or need service? Send a request and we'll get back to you quickly.",
+    "contactH": "Reach support", "hoursH": "Support hours", "emergencyH": "Emergency service", "emergency": "Information to be confirmed by CRC Telecom."
+  },
+  "contact": {
+    "h": "Contact & Quote", "p": "Tell us about your project. We'll reply with a clear recommendation.",
+    "mapBtn": "Show Google map", "mapNote": "The Google map only loads if you click, to protect your privacy.", "openMaps": "Open in Google Maps"
+  },
+  "form": {
+    "name": "Full name", "company": "Company or organization", "title": "Job title", "email": "Email", "phone": "Phone",
+    "province": "Province or state", "city": "City", "services": "Services needed", "sites": "Number of sites or users",
+    "contactPref": "Preferred contact method", "prefEmail": "Email", "prefPhone": "Phone", "message": "Message",
+    "siteAddress": "Site address", "system": "System type", "urgency": "Urgency",
+    "urgLow": "Low: when possible", "urgMed": "Medium: within 48 h", "urgHigh": "High: system down",
+    "description": "Description of the issue", "photo": "Photo (optional)", "photoHint": "JPG or PNG, 5 MB max",
+    "consent": "I agree that CRC Telecom may use this information to respond to my request, in accordance with the",
+    "privacy": "Privacy Policy", "required": "required", "optional": "optional", "choose": "Choose…",
+    "submitQuote": "Send my quote request", "submitSupport": "Send service request", "sending": "Sending…",
+    "okTitle": "Request sent", "okText": "Thank you. We received your request and will reply shortly. A confirmation was sent to your email.",
+    "error": "Sending failed. Try again or email us at office@crc-telecom.ca.",
+    "errRequired": "This field is required.", "errEmail": "Enter a valid email address, for example name@company.com.",
+    "errConsent": "Check the box so we can process your request.", "errFile": "The file must be an image of 5 MB or less.",
+    "fixErrors": "Fix the fields marked below."
+  },
+  "cookie": {
+    "title": "Your privacy", "text": "We use cookies that are essential for the site to work. Analytics and advertising cookies stay off until you accept them.",
+    "accept": "Accept all", "refuse": "Refuse all", "choose": "Choose", "save": "Save my choices",
+    "necessary": "Essential", "necessaryD": "Required for the site to work. Always on.",
+    "analytics": "Analytics", "analyticsD": "Help us understand how the site is used (Google Analytics).",
+    "marketing": "Advertising", "marketingD": "Used to measure our advertising campaigns.", "policy": "Cookie Policy", "manage": "Manage cookies"
+  },
+  "footer": { "company": "Company", "follow": "Follow us", "legal": "Legal", "rights": "All rights reserved." },
+  "legal": {
+    "privacy": "Privacy Policy", "cookies": "Cookie Policy", "terms": "Terms of Use", "accessibility": "Accessibility Statement",
+    "draft": "Draft version. Final text must be approved by CRC Telecom's legal advisor.", "updated": "Last updated"
+  },
+  "notFound": { "h": "Page not found", "p": "This page doesn't exist or has moved.", "back": "Back to home" }
+}
