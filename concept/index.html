@@ -1,0 +1,822 @@
+<title>CRC Telecom Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap">
+<style>
+/* Layout: "signal from one origin" — every section grows out of the logo's teal dot and three arcs.
+   Navy hero and footer bracket a white/grey middle; one pinned moment (Why CRC) and one live map. */
+:root{
+  --navy:#0B2545; --navy-2:#0F2E55; --navy-3:#163A66;
+  --teal:#14B8A6; --teal-l:#5EEAD4;
+  --slate:#475569; --grey:#F1F5F9; --white:#FFFFFF;
+  --line:#DCE3EC; --ink-soft:#64748B;
+  --f-display:"Poppins",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gut-r:max(16px,env(safe-area-inset-right,0px));
+  --wrap:1240px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--slate);font:400 17px/1.6 var(--f-body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--white)}
+h1,h2,h3,h4{font-family:var(--f-display);color:var(--navy);margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+.wrap>*{min-width:0}
+.eyebrow{font:600 12.5px/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:var(--navy);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(20,184,166,.18)}
+.on-dark .eyebrow{color:var(--teal-l)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:15px 24px;font:600 15.5px/1 var(--f-body);text-decoration:none;transition:transform .35s var(--ease),background .25s,color .25s,box-shadow .35s}
+.btn svg{width:18px;height:18px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-teal{background:var(--teal);color:var(--navy)}
+.btn-teal:hover{background:var(--teal-l);box-shadow:0 10px 30px -10px rgba(94,234,212,.7)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--navy-3)}
+.btn-ghost{background:transparent;color:var(--white);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.35)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--teal-l);color:var(--teal-l)}
+
+/* utility bar + header */
+.util{background:var(--navy);color:#C9D6E6;font-size:13px}
+.util .wrap{display:flex;gap:22px;align-items:center;justify-content:space-between;padding-block:8px}
+.util span,.util a{white-space:nowrap}
+.util a{text-decoration:none;color:var(--teal-l)}
+.util .u-left{display:flex;gap:22px;overflow:hidden}
+.hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+.hdr.scrolled{border-color:var(--line);box-shadow:0 8px 30px -20px rgba(11,37,69,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:16px;padding-block:14px}
+.logo{display:block;width:168px;flex:none;padding:4px 0}
+.logo svg{display:block;width:100%;height:auto}
+.nav{display:flex;gap:0;margin-left:auto}
+.nav a{white-space:nowrap;font:500 15px/1 var(--f-body);color:var(--navy);text-decoration:none;padding:10px 10px;border-radius:8px;position:relative}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav .caret{display:inline-block;width:8px;height:8px;margin-left:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.hdr .phone{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--f-body);color:var(--navy);text-decoration:none;white-space:nowrap}
+.hdr .phone svg{width:18px;height:18px;color:var(--teal)}
+@media (min-width:1241px){.hdr .phone{width:42px;height:42px;justify-content:center;border-radius:50%;background:var(--grey);transition:background .25s}.hdr .phone:hover{background:var(--navy)}.hdr .phone .ph-t{display:none}}
+.lang{display:inline-flex;background:var(--grey);border-radius:999px;padding:3px}
+.lang button{border:0;background:transparent;border-radius:999px;padding:7px 11px;font:600 12.5px/1 var(--f-body);color:var(--slate);letter-spacing:.06em}
+.lang button[aria-pressed="true"]{background:var(--navy);color:var(--white)}
+.hdr .btn{padding:12px 18px;font-size:14.5px}
+.burger{display:none;border:0;background:var(--grey);width:44px;height:44px;border-radius:12px;align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:2px;background:var(--navy);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--navy)}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+
+/* hero */
+.hero{position:relative;background:var(--navy);color:#D5E0EE;overflow:hidden;isolation:isolate}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:140px;background:linear-gradient(to bottom,rgba(11,37,69,0),var(--navy));z-index:-1;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:56px;align-items:end;padding-block:clamp(56px,7vw,104px) clamp(56px,6vw,90px)}
+.hero h1{color:var(--white);font-weight:600;font-size:clamp(32px,4.2vw,58px);line-height:1.04;letter-spacing:-.025em;margin-top:26px}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w>span{display:inline-block}
+.hero h1 em{font-style:normal;color:var(--teal-l)}
+.hero .sub{max-width:62ch;margin-top:26px;font-size:clamp(16px,1.35vw,18.5px);color:#B9C8DB}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.netcard{background:rgba(15,46,85,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(94,234,212,.18);border-radius:22px;padding:22px;color:#D5E0EE}
+.netcard h2{font:600 13px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--teal-l);display:flex;justify-content:space-between;align-items:center}
+.netcard h2 .live{display:inline-flex;align-items:center;gap:7px;color:#9FB3CB;letter-spacing:.1em}
+.netcard h2 .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--teal-l);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.netcard ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:2px}
+.netcard li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:11px 4px;border-top:1px solid rgba(255,255,255,.08);font-size:15px}
+.netcard li b{color:var(--white);font-weight:500}
+.netcard li .sig{display:flex;gap:2px;align-items:flex-end;height:14px}
+.netcard li .sig i{display:block;width:3px;background:var(--teal-l);border-radius:2px;animation:sig 1.8s infinite ease-in-out}
+.netcard li .sig i:nth-child(1){height:5px}.netcard li .sig i:nth-child(2){height:9px;animation-delay:.15s}.netcard li .sig i:nth-child(3){height:14px;animation-delay:.3s}
+@keyframes sig{0%,100%{opacity:1}50%{opacity:.35}}
+.netcard li small{font-size:12px;color:#8FA5BF;letter-spacing:.08em}
+.netcard .hq{margin-top:12px;padding:14px;border-radius:14px;background:rgba(11,37,69,.7);font-size:13.5px;line-height:1.5}
+.netcard .hq strong{display:block;color:var(--white);font-weight:600;font-family:var(--f-display);font-size:15px}
+
+/* marquee */
+.marquee{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);overflow:hidden;padding-block:22px}
+.marquee .track{display:flex;width:max-content;gap:0;will-change:transform}
+.marquee span{font:600 clamp(28px,4vw,54px)/1 var(--f-display);color:transparent;-webkit-text-stroke:1.2px rgba(94,234,212,.55);white-space:nowrap;padding-right:44px;display:inline-flex;align-items:center;gap:44px}
+.marquee span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--teal)}
+
+/* trust */
+.trust{border-bottom:1px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-block:0}
+.fact{padding:38px 22px 34px;border-left:1px solid var(--line)}
+.fact:first-child{border-left:0;padding-left:0}
+.fact .n{font:600 clamp(44px,5vw,68px)/1 var(--f-display);color:var(--navy);letter-spacing:-.03em;font-variant-numeric:tabular-nums;display:flex;align-items:baseline;gap:6px}
+.fact .n sup{font-size:.32em;color:var(--teal);top:0;align-self:flex-start;margin-top:.35em}
+.fact p{margin-top:10px;font-size:15px;max-width:24ch}
+.slots{background:var(--grey)}
+.slots .wrap{display:flex;align-items:center;gap:18px;padding-block:18px;flex-wrap:wrap}
+.slots p{font-size:13px;color:var(--ink-soft);letter-spacing:.04em;margin-right:auto}
+.slot{height:38px;min-width:100px;border:1.5px dashed #B8C4D3;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#7B8BA0;padding:0 14px}
+
+/* section shell */
+.sec{padding-block:clamp(80px,10vw,140px)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:56px}
+.sec-head h2{font-size:clamp(32px,4.2vw,56px);font-weight:600;line-height:1.06;letter-spacing:-.025em;margin-top:18px}
+.sec-head p{max-width:52ch;font-size:17.5px}
+
+/* services */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.filters button{border:1.5px solid var(--line);background:var(--white);color:var(--navy);border-radius:999px;padding:9px 16px;font:500 14px/1 var(--f-body);transition:all .25s}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--white)}
+.filters button:hover{border-color:var(--navy)}
+.grid9{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.svc{position:relative;display:flex;flex-direction:column;gap:14px;min-height:300px;padding:30px 28px 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;color:var(--slate);background:var(--white);overflow:hidden;transition:background .45s var(--ease),opacity .4s,filter .4s}
+.svc .ico{width:52px;height:52px;border-radius:14px;background:var(--grey);display:grid;place-items:center;color:var(--navy);transition:background .4s,color .4s,transform .5s var(--ease)}
+.svc .ico svg{width:26px;height:26px}
+.svc .tag{position:absolute;top:30px;right:28px;font:600 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.svc h3{font-size:21px;font-weight:600;line-height:1.2;margin-top:18px;transition:color .4s}
+.svc p{font-size:15.5px;line-height:1.55}
+.svc ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;max-height:0;opacity:0;transition:max-height .5s var(--ease),opacity .35s}
+.svc li{font-size:12.5px;padding:5px 10px;border-radius:999px;background:rgba(94,234,212,.14);color:var(--teal-l)}
+.svc .more{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font:600 14px/1 var(--f-body);color:var(--navy);transition:color .4s}
+.svc .more::after{content:"";width:22px;height:1.5px;background:currentColor;transition:width .4s var(--ease)}
+.svc .arcs{position:absolute;right:-30px;bottom:-30px;width:170px;height:170px;pointer-events:none;opacity:0;transition:opacity .4s}
+.svc .arcs path{fill:none;stroke:var(--teal-l);stroke-width:7;stroke-linecap:round;stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .8s var(--ease)}
+.svc .arcs path:nth-child(2){transition-delay:.08s}.svc .arcs path:nth-child(3){transition-delay:.16s}
+.svc:hover,.svc:focus-visible{background:var(--navy);color:#C9D6E6;outline-offset:-3px;border-radius:0}
+.svc:hover h3,.svc:focus-visible h3{color:var(--white)}
+.svc:hover .ico,.svc:focus-visible .ico{background:var(--teal);color:var(--navy);transform:rotate(-8deg) scale(1.06)}
+.svc:hover .tag,.svc:focus-visible .tag{color:var(--teal-l)}
+.svc:hover .more,.svc:focus-visible .more{color:var(--teal-l)}
+.svc:hover .more::after{width:38px}
+.svc:hover ul,.svc:focus-visible ul{max-height:90px;opacity:1}
+.svc:hover .arcs,.svc:focus-visible .arcs{opacity:1}
+.svc:hover .arcs path,.svc:focus-visible .arcs path{stroke-dashoffset:0}
+.svc.dim{opacity:.28;filter:grayscale(1)}
+
+/* why (pinned) */
+.why{background:var(--navy);color:#C9D6E6;overflow:hidden}
+.why .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center;min-height:100vh;padding-block:90px}
+.why h2{color:var(--white);font-size:clamp(32px,4.2vw,56px);font-weight:600;line-height:1.06;letter-spacing:-.025em;margin-top:18px}
+.emblem{position:relative;aspect-ratio:1;max-width:520px;width:100%;justify-self:center}
+.emblem svg{width:100%;height:100%;overflow:visible}
+.emblem .tile{fill:var(--navy-2);stroke:rgba(94,234,212,.16);stroke-width:1}
+.emblem .arc{fill:none;stroke:rgba(255,255,255,.12);stroke-width:9;stroke-linecap:round;transition:stroke .5s}
+.emblem .arc.on{stroke:var(--white)}
+.emblem .dot{fill:rgba(20,184,166,.3);transition:fill .5s}
+.emblem .dot.on{fill:var(--teal)}
+.emblem .ring{fill:none;stroke:var(--teal-l);stroke-width:.6;opacity:0}
+.points{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:4px}
+.pt{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);opacity:.38;transition:opacity .5s}
+.pt.on{opacity:1}
+.pt .k{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(94,234,212,.4);display:grid;place-items:center;color:var(--teal-l)}
+.pt .k svg{width:20px;height:20px}
+.pt h3{color:var(--white);font-size:20px;font-weight:600}
+.pt p{margin-top:6px;font-size:15.5px;color:#B3C3D7;max-width:46ch}
+.why-progress{height:2px;background:rgba(255,255,255,.1);margin-top:28px;border-radius:2px;overflow:hidden}
+.why-progress i{display:block;height:100%;width:100%;background:var(--teal-l);transform:scaleX(0);transform-origin:left}
+
+/* industries */
+.ind{background:var(--grey)}
+.rows{border-top:1px solid #CFD8E3}
+.row{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr) auto;gap:32px;align-items:center;padding:30px 0;border-bottom:1px solid #CFD8E3;text-decoration:none;position:relative;isolation:isolate}
+.row::before{content:"";position:absolute;inset:0 calc(-1 * var(--gut));background:var(--white);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease);z-index:-1}
+.row:hover::before,.row:focus-visible::before{transform:scaleY(1)}
+.row h3{font-size:clamp(22px,2.6vw,34px);font-weight:600;line-height:1.1;letter-spacing:-.02em;display:flex;align-items:center;gap:14px;transition:transform .5s var(--ease)}
+.row:hover h3{transform:translateX(10px)}
+.row .first{font:600 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:var(--teal-l);padding:7px 10px;border-radius:999px;white-space:nowrap}
+.row p{font-size:15.5px}
+.row .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.row .chips span{font-size:12.5px;padding:5px 10px;border-radius:999px;border:1px solid #C3CFDC;color:var(--navy);background:var(--white)}
+.row .go{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--navy);display:grid;place-items:center;color:var(--navy);transition:background .35s,color .35s,transform .5s var(--ease)}
+.row .go svg{width:20px;height:20px}
+.row:hover .go{background:var(--navy);color:var(--teal-l);transform:rotate(-45deg)}
+
+/* map */
+.map .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.map h2{font-size:clamp(32px,4.2vw,56px);font-weight:600;line-height:1.06;letter-spacing:-.025em;margin-top:18px}
+.map .lede{margin-top:20px;max-width:46ch}
+.regions{list-style:none;padding:0;margin:34px 0 0;display:grid;gap:8px}
+.regions button{width:100%;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;border:1.5px solid var(--line);background:var(--white);border-radius:16px;padding:16px 18px;color:var(--slate);transition:border-color .3s,background .3s,transform .4s var(--ease)}
+.regions button:hover,.regions button[aria-pressed="true"]{border-color:var(--navy);transform:translateX(6px)}
+.regions button[aria-pressed="true"]{background:var(--navy);color:#C9D6E6}
+.regions .sw{width:12px;height:12px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(20,184,166,.2)}
+.regions b{display:block;font:600 17px/1.2 var(--f-display);color:var(--navy)}
+.regions button[aria-pressed="true"] b{color:var(--white)}
+.regions small{font-size:13.5px}
+.regions .lg{font:600 11.5px/1 var(--f-body);letter-spacing:.12em;padding:6px 9px;border-radius:999px;background:var(--grey);color:var(--navy)}
+.mapbox{position:relative;background:var(--navy);border-radius:28px;overflow:hidden;aspect-ratio:1/1;max-width:100%}
+.mapbox canvas{position:absolute;inset:0;width:100%;height:100%}
+.mapbox .legend{position:absolute;left:18px;bottom:16px;right:18px;display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#9FB3CB;letter-spacing:.06em;pointer-events:none}
+.mapbox .legend b{color:var(--teal-l);font-weight:600}
+.mapnote{margin-top:12px;font-size:13px;color:var(--ink-soft)}
+
+/* CTA */
+.cta{background:var(--teal);color:var(--navy);position:relative;overflow:hidden;isolation:isolate}
+.cta .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) auto;gap:40px;align-items:center;padding-block:clamp(70px,9vw,120px)}
+.cta h2{font-size:clamp(30px,4.4vw,60px);font-weight:600;line-height:1.05;letter-spacing:-.025em}
+.cta p{margin-top:16px;font-size:18px;color:var(--navy);max-width:52ch}
+.cta svg.bg{position:absolute;right:-120px;top:50%;width:720px;height:720px;transform:translateY(-50%);z-index:-1}
+.cta svg.bg path{fill:none;stroke:rgba(11,37,69,.13);stroke-width:12;stroke-linecap:round}
+
+/* footer */
+.ftr{background:var(--navy);color:#AFC0D4;font-size:15px}
+.ftr .top{display:grid;grid-template-columns:minmax(0,1.3fr) repeat(3,minmax(0,1fr));gap:40px;padding-block:72px 48px}
+.ftr .flogo{width:200px}
+.ftr .flogo svg{width:100%;height:auto;display:block}
+.ftr address{font-style:normal;margin-top:22px;line-height:1.7}
+.ftr a{color:var(--teal-l);text-decoration:none}
+.ftr a:hover{text-decoration:underline}
+.ftr h4{font:600 12.5px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--white);margin-bottom:18px}
+.ftr ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.ftr ul a{color:#C9D6E6}
+.ftr .bot{border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;padding-block:22px;font-size:13.5px}
+.ftr .bot nav{display:flex;flex-wrap:wrap;gap:18px}
+.ftr .bot nav a{color:#AFC0D4}
+.ftr .big{font:700 clamp(60px,15vw,220px)/.8 var(--f-display);color:transparent;-webkit-text-stroke:1px rgba(94,234,212,.22);letter-spacing:-.04em;white-space:nowrap;overflow:hidden;padding-top:10px;user-select:none}
+
+/* cookie */
+.cookie{position:fixed;z-index:70;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));max-width:420px;width:calc(100% - 32px);background:var(--white);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 30px 60px -30px rgba(11,37,69,.45);font-size:14px;color:var(--slate)}
+.cookie h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.cookie .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.cookie .acts button{border-radius:999px;padding:10px 14px;font:600 13.5px/1 var(--f-body);border:1.5px solid var(--navy);background:var(--white);color:var(--navy)}
+.cookie .acts button.p{background:var(--navy);color:var(--white)}
+.cookie .acts button.l{border-color:transparent;text-decoration:underline;padding-inline:6px}
+
+/* concept ribbon */
+.ribbon{position:fixed;z-index:65;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--navy);color:var(--teal-l);font:600 11.5px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;border-radius:999px;box-shadow:0 10px 30px -10px rgba(11,37,69,.6)}
+
+/* responsive */
+@media (max-width:1240px){
+  .nav{display:none}
+  .hdr .phone{margin-left:auto}
+  .burger{display:inline-flex}
+}
+@media (max-width:1080px){
+  .nav,.hdr .phone{display:none}
+  .burger{display:inline-flex}
+  .hdr .wrap{gap:12px}
+  .lang{margin-left:auto}
+  .hero .wrap{grid-template-columns:1fr}
+  .netcard{max-width:520px}
+}
+@media (max-width:900px){
+  .sec-head,.why .wrap,.map .wrap,.cta .wrap{grid-template-columns:1fr}
+  .why .wrap{min-height:0}
+  .emblem{max-width:340px;order:-1}
+  .pt{opacity:1}
+  .grid9{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .trust .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fact:nth-child(3){border-left:0;padding-left:0}
+  .fact:nth-child(n+3){border-top:1px solid var(--line)}
+  .row{grid-template-columns:1fr auto}
+  .row>div:nth-child(2){grid-column:1/-1;grid-row:2}
+  .ftr .top{grid-template-columns:1fr 1fr}
+  .ftr .top>div:first-child{grid-column:1/-1}
+  .cta svg.bg{width:480px;height:480px;right:-160px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .util .u-left span:not(:first-child){display:none}
+  .util .u-right{display:none}
+  .logo{width:130px}
+  .hdr .btn{display:none}
+  .grid9{grid-template-columns:1fr}
+  .svc{min-height:0;padding:24px 20px}
+  .svc h3{margin-top:4px}
+  .cookie{font-size:13px;padding:16px}
+  .svc ul{max-height:none;opacity:1}
+  .svc li{background:var(--grey);color:var(--navy)}
+  .svc:hover li{background:rgba(94,234,212,.14);color:var(--teal-l)}
+  .fact{padding:26px 14px 24px}
+  .fact:nth-child(odd){padding-left:0}
+  .slot{min-width:0;flex:1 1 40%}
+  .ftr .top{grid-template-columns:1fr}
+  .ribbon{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+</style>
+
+<!-- ============ markup ============ -->
+<div class="util" role="complementary">
+  <div class="wrap">
+    <div class="u-left">
+      <span data-i18n="util_addr">5590 av Royalmount, Mont-Royal, QC H4P 1H7</span>
+      <span><a href="mailto:office@crc-telecom.ca">office@crc-telecom.ca</a></span>
+      <span><span data-i18n="util_tel">Tél.</span> <a href="tel:+16473671022">647-367-1022</a></span>
+    </div>
+    <div class="u-right"><span data-i18n="util_area">Québec · Nord-Ouest de l'Ontario · New York · Vermont</span></div>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="CRC Telecom — accueil">
+      <!-- crc-telecom-logo-color.svg, used as supplied -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 140" role="img" aria-label="CRC Telecom"><g transform="translate(10,10)"><rect x="0" y="0" width="120" height="120" rx="26" fill="#0B2545"/><circle cx="38" cy="82" r="9" fill="#14B8A6"/><path d="M38 56 A26 26 0 0 1 64 82" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/><path d="M38 36 A46 46 0 0 1 84 82" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.85"/><path d="M38 16 A66 66 0 0 1 104 82" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" opacity="0.6"/></g><text x="150" y="86" font-family="Poppins" font-weight="700" font-size="72" letter-spacing="2" fill="#0B2545">CRC</text><text x="153" y="120" font-family="Inter" font-weight="600" font-size="24" letter-spacing="11.5" fill="#14B8A6">TELECOM</text></svg>
+    </a>
+    <nav class="nav" aria-label="Menu principal">
+      <a href="#services"><span data-i18n="nav_services">Services</span><i class="caret"></i></a>
+      <a href="#secteurs"><span data-i18n="nav_ind">Secteurs</span><i class="caret"></i></a>
+      <a href="#regions"><span data-i18n="nav_areas">Régions desservies</span><i class="caret"></i></a>
+      <a href="#pourquoi" data-i18n="nav_about">À propos</a>
+      <a href="#contact" data-i18n="nav_support">Soutien</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <a class="phone" href="tel:+16473671022" aria-label="647-367-1022"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="ph-t">647-367-1022</span></a>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button type="button" id="lang-fr" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn btn-navy" href="#contact" data-i18n="cta_quote">Demander une soumission</a>
+    <button class="burger" type="button" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero on-dark" aria-labelledby="h1">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow h-in" data-i18n="hero_eyebrow">Intégrateur communications et sécurité</span>
+        <h1 id="h1"></h1>
+        <p class="sub h-in" data-i18n="hero_sub">Systèmes téléphoniques, radios bidirectionnelles, Wi-Fi, câblage, caméras, contrôle d'accès, satellite et suivi de flotte pour les clients commerciaux et gouvernementaux au Québec, dans le Nord-Ouest de l'Ontario, dans l'État de New York et au Vermont.</p>
+        <div class="ctas h-in">
+          <a class="btn btn-teal" href="#contact"><span data-i18n="cta_quote">Demander une soumission</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#services" data-i18n="cta_services">Nos services</a>
+        </div>
+      </div>
+      <aside class="netcard h-in" aria-label="Couverture">
+        <h2><span data-i18n="net_title">Zone de service</span><span class="live" data-i18n="net_live">En service</span></h2>
+        <ul id="netList"></ul>
+        <div class="hq"><strong data-i18n="net_hq">Siège social</strong>5590 av Royalmount, Mont-Royal, QC H4P 1H7</div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="marquee"></div></div>
+
+  <section class="trust" aria-label="Chiffres clés">
+    <div class="wrap">
+      <div class="fact"><div class="n"><span class="count" data-to="9">9</span></div><p data-i18n="f1">services intégrés sous un même toit</p></div>
+      <div class="fact"><div class="n"><span class="count" data-to="4">4</span></div><p data-i18n="f2">régions desservies au Canada et aux États-Unis</p></div>
+      <div class="fact"><div class="n"><span class="count" data-to="2">2</span></div><p data-i18n="f3">langues de service, français et anglais</p></div>
+      <div class="fact"><div class="n"><span class="count" data-to="1">1</span><sup>●</sup></div><p data-i18n="f4">seul point de contact, de la soumission au soutien</p></div>
+    </div>
+  </section>
+  <div class="slots">
+    <div class="wrap">
+      <p data-i18n="slots">Années d'expérience, certifications et logos partenaires : fournis par CRC Telecom</p>
+      <div class="slot" data-i18n="slot_y">Années</div><div class="slot" data-i18n="slot_c">Certification</div><div class="slot" data-i18n="slot_p">Partenaire</div><div class="slot" data-i18n="slot_p">Partenaire</div>
+    </div>
+  </div>
+
+  <section class="sec" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow rv" data-i18n="svc_eyebrow">Services</span><h2 id="svc-h" class="rv" data-i18n="svc_h">Voix, radio, réseau, sécurité et flotte. Un seul partenaire.</h2></div>
+        <p class="rv" data-i18n="svc_p">Nous fournissons, concevons, installons et entretenons chaque système. Vous parlez à la même équipe du premier relevé de site jusqu'au soutien.</p>
+      </div>
+      <div class="filters rv" role="group" aria-label="Filtrer" id="filters"></div>
+      <div class="grid9" id="grid9"></div>
+    </div>
+  </section>
+
+  <section class="why on-dark" id="pourquoi" aria-labelledby="why-h">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-i18n="why_eyebrow">Pourquoi CRC Telecom</span>
+        <h2 id="why-h" data-i18n="why_h">Un signal clair, du premier appel au soutien continu.</h2>
+        <ol class="points" id="points"></ol>
+        <div class="why-progress" aria-hidden="true"><i id="whyBar"></i></div>
+      </div>
+      <div class="emblem" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <rect class="tile" x="0" y="0" width="120" height="120" rx="26"/>
+          <circle class="ring" cx="38" cy="82" r="10"/>
+          <circle class="ring" cx="38" cy="82" r="10"/>
+          <circle class="dot" id="em0" cx="38" cy="82" r="9"/>
+          <path class="arc" id="em1" d="M38 56 A26 26 0 0 1 64 82"/>
+          <path class="arc" id="em2" d="M38 36 A46 46 0 0 1 84 82"/>
+          <path class="arc" id="em3" d="M38 16 A66 66 0 0 1 104 82"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec ind" id="secteurs" aria-labelledby="ind-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow rv" data-i18n="ind_eyebrow">Secteurs</span><h2 id="ind-h" class="rv" data-i18n="ind_h">Pour ceux qui ne peuvent pas se permettre une panne.</h2></div>
+        <p class="rv" data-i18n="ind_p">Des bureaux municipaux aux camps miniers, chaque secteur a ses contraintes. Nous adaptons les systèmes à votre réalité sur le terrain.</p>
+      </div>
+      <div class="rows" id="rows"></div>
+    </div>
+  </section>
+
+  <section class="sec map" id="regions" aria-labelledby="map-h">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow rv" data-i18n="map_eyebrow">Régions desservies</span>
+        <h2 id="map-h" class="rv" data-i18n="map_h">Quatre régions, une équipe locale.</h2>
+        <p class="lede rv" data-i18n="map_p">Du Grand Montréal au nord de l'Ontario, nos techniciens se déplacent là où vos équipes travaillent, y compris dans les régions éloignées et nordiques.</p>
+        <ul class="regions" id="regionList"></ul>
+      </div>
+      <div class="rv">
+        <div class="mapbox"><canvas id="mapCanvas" aria-label="Carte des régions desservies" role="img"></canvas>
+          <div class="legend"><span><b>●</b> <span data-i18n="map_leg">Siège social · Mont-Royal</span></span><span>45.5° N</span></div>
+        </div>
+        <p class="mapnote" data-i18n="map_note">Liste des villes par région à confirmer par CRC Telecom.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact" aria-labelledby="cta-h">
+    <svg class="bg" viewBox="0 0 120 120" aria-hidden="true"><path d="M38 56 A26 26 0 0 1 64 82"/><path d="M38 36 A46 46 0 0 1 84 82"/><path d="M38 16 A66 66 0 0 1 104 82"/></svg>
+    <div class="wrap">
+      <div><h2 class="rv" data-i18n="cta_h">Un nouveau site ou une mise à niveau en vue?</h2><p class="rv" data-i18n="cta_p">Réservez une évaluation de site gratuite. Un technicien certifié visite vos locaux et vous remet une recommandation claire.</p></div>
+      <a class="btn btn-navy rv" href="#contact"><span data-i18n="cta_book">Réserver une évaluation gratuite</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="flogo">
+          <!-- crc-telecom-logo-white-transparent.svg, used as supplied -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 140" role="img" aria-label="CRC Telecom"><g transform="translate(10,10)"><rect x="0" y="0" width="120" height="120" rx="26" fill="#FFFFFF"/><circle cx="38" cy="82" r="9" fill="#14B8A6"/><path d="M38 56 A26 26 0 0 1 64 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round"/><path d="M38 36 A46 46 0 0 1 84 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round" opacity="0.85"/><path d="M38 16 A66 66 0 0 1 104 82" fill="none" stroke="#0B2545" stroke-width="9" stroke-linecap="round" opacity="0.6"/></g><text x="150" y="86" font-family="Poppins" font-weight="700" font-size="72" letter-spacing="2" fill="#FFFFFF">CRC</text><text x="153" y="120" font-family="Inter" font-weight="600" font-size="24" letter-spacing="11.5" fill="#5EEAD4">TELECOM</text></svg>
+        </div>
+        <address>5590 av Royalmount<br>Mont-Royal, QC H4P 1H7, Canada<br><a href="mailto:office@crc-telecom.ca">office@crc-telecom.ca</a><br><a href="tel:+16473671022">647-367-1022</a></address>
+      </div>
+      <div><h4 data-i18n="nav_services">Services</h4><ul id="fServices"></ul></div>
+      <div><h4 data-i18n="f_company">Entreprise</h4><ul>
+        <li><a href="#secteurs" data-i18n="nav_ind">Secteurs</a></li>
+        <li><a href="#regions" data-i18n="nav_areas">Régions desservies</a></li>
+        <li><a href="#pourquoi" data-i18n="nav_about">À propos</a></li>
+        <li><a href="#contact" data-i18n="nav_support">Soutien</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul></div>
+      <div><h4 data-i18n="f_follow">Suivez-nous</h4><ul><li><a href="#top">LinkedIn</a></li><li><a href="#top">Facebook</a></li></ul>
+        <h4 style="margin-top:28px" data-i18n="f_lang">Langue</h4><div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-pressed="true">FR</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div></div>
+    </div>
+    <div class="bot">
+      <span>© 2026 CRC Telecom</span>
+      <nav aria-label="Légal"><a href="#top" data-i18n="l1">Politique de confidentialité</a><a href="#top" data-i18n="l2">Politique sur les témoins</a><a href="#top" data-i18n="l3">Conditions d'utilisation</a><a href="#top" data-i18n="l4">Déclaration d'accessibilité</a><a href="#top" id="cookieReopen" data-i18n="l5">Gérer les témoins</a></nav>
+    </div>
+    <div class="big" aria-hidden="true">CRC TELECOM</div>
+  </div>
+</footer>
+
+<div class="cookie" id="cookie" role="dialog" aria-labelledby="ck-h" hidden>
+  <h4 id="ck-h" data-i18n="ck_h">Votre vie privée</h4>
+  <p data-i18n="ck_p">Nous utilisons des témoins essentiels au fonctionnement du site. Les témoins d'analyse restent désactivés tant que vous ne les acceptez pas (Loi 25).</p>
+  <div class="acts"><button class="p" type="button" data-ck="all" data-i18n="ck_a">Tout accepter</button><button type="button" data-ck="none" data-i18n="ck_r">Tout refuser</button><button class="l" type="button" data-ck="none" data-i18n="ck_c">Choisir</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+"use strict";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const hasGsap = !!window.gsap && !!window.ScrollTrigger;
+
+/* ---------- content ---------- */
+const I = {
+  phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/>',
+  radio:'<rect x="7" y="8" width="10" height="13" rx="2"/><path d="M9 8V2M10 12h4M10 15h4"/><circle cx="12" cy="18.2" r=".6"/>',
+  wifi:'<path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/>',
+  cable:'<rect x="5" y="3" width="14" height="11" rx="1.5"/><path d="M9 14v3h6v-3M12 17v4M8.5 6.5v3M11 6.5v3M13.5 6.5v3M16 6.5v3"/>',
+  camera:'<rect x="2.5" y="7" width="13" height="8" rx="2"/><path d="M15.5 10l5-2v8l-5-2M8 15v4M5 20h6"/>',
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1.4"/>',
+  sat:'<path d="M5 9a10 10 0 0 0 10 10L5 9z"/><path d="M10 14l5-5"/><circle cx="16" cy="8" r="1.3"/><path d="M17.5 3.5a6 6 0 0 1 3 3"/>',
+  uc:'<path d="M4 4h10a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M19 9h1a2 2 0 0 1 2 2v9l-3-2h-6a2 2 0 0 1-2-2v-1"/>',
+  fleet:'<path d="M2 6h11v10H2zM13 9.5h4l3 3.5v3h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/>',
+  arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  one:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/>',
+  cert:'<path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+  north:'<path d="M3 20l6-10 4 6 3-4 5 8z"/><path d="M12 3v3M10.5 4.5h3"/>',
+  support:'<path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19a4 4 0 0 1-4 3h-2"/>'
+};
+const svg = (k,c="")=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="${c}">${I[k]}</svg>`;
+
+const S = [
+ {id:"phones",ic:"phone",g:"voice",fr:["Systèmes téléphoniques d'affaires","Infonuagique (VoIP) ou sur place, avec migration de vos anciennes lignes.",["Postes de bureau","Réceptionniste automatique","Enregistrement des appels"]],en:["Business Phone Systems","Cloud (VoIP) or on-premise, with migration from your old lines.",["Desk phones","Auto-attendant","Call recording"]]},
+ {id:"uc",ic:"uc",g:"voice",fr:["Communications unifiées","Voix, vidéo, clavardage et conférences sur une seule plateforme.",["Microsoft Teams","Applications mobiles","Visioconférence"]],en:["Unified Communications","Voice, video, chat and conferencing in one platform.",["Microsoft Teams","Mobile apps","Video meetings"]]},
+ {id:"radios",ic:"radio",g:"voice",fr:["Radios bidirectionnelles","Radios portatives et mobiles, répéteurs et aide aux licences.",["Location pour projets","PTT cellulaire","Répéteurs"]],en:["Two-Way Radios","Portable and mobile radios, repeaters and licensing help.",["Project rentals","Push-to-talk over cellular","Repeaters"]]},
+ {id:"wifi",ic:"wifi",g:"net",fr:["Wi-Fi et réseaux sans fil","Une couverture fiable, du bureau à l'entrepôt, dedans comme dehors.",["Relevé de site","Réseau invité","Surveillance"]],en:["Wi-Fi & Wireless Networks","Reliable coverage from office to warehouse, indoors and out.",["Site surveys","Guest networks","Monitoring"]]},
+ {id:"cabling",ic:"cable",g:"net",fr:["Câblage structuré","Cat6/Cat6A et fibre optique, testés, certifiés et documentés.",["Baies réseau","Certification","Étiquetage"]],en:["Data Cabling","Cat6/Cat6A and fibre optic, tested, certified and documented.",["Network racks","Certification","Labelling"]]},
+ {id:"sat",ic:"sat",g:"net",fr:["Appareils satellites","Téléphones, internet et messagers satellites pour sites éloignés.",["Travailleurs isolés","Internet satellite","Téléphones satellites"]],en:["Satellite Devices","Satellite phones, internet and messengers for remote sites.",["Lone workers","Satellite internet","Satellite phones"]]},
+ {id:"cams",ic:"camera",g:"sec",fr:["Caméras de sécurité","Caméras IP et enregistreurs, visibles à distance sur votre téléphone.",["Analytique vidéo","Multisites","Accès mobile"]],en:["Security Cameras","IP cameras and recorders you can view remotely on your phone.",["Video analytics","Multi-site","Mobile viewing"]]},
+ {id:"access",ic:"lock",g:"sec",fr:["Contrôle d'accès","Cartes, porte-clés et identifiants mobiles, liés à vos caméras.",["Interphones","Quincaillerie de porte","Gestion des visiteurs"]],en:["Access Control","Card, fob and mobile credentials, linked to your cameras.",["Intercoms","Door hardware","Visitor management"]]},
+ {id:"fleet",ic:"fleet",g:"fleet",fr:["Gestion et suivi de flotte","Suivi GPS des véhicules et de l'équipement sur une carte en direct.",["Carte en direct","Rapports de conduite","Alertes d'entretien"]],en:["Fleet Tracking","GPS tracking for vehicles and equipment on a live map.",["Live map","Driver reports","Maintenance alerts"]]}
+];
+const G = {all:{fr:"Tous",en:"All"},voice:{fr:"Voix",en:"Voice"},net:{fr:"Réseau",en:"Network"},sec:{fr:"Sécurité",en:"Security"},fleet:{fr:"Flotte",en:"Fleet"}};
+
+const W = [
+ {ic:"one",fr:["Un partenaire pour tous vos systèmes","Téléphonie, radio, réseau, sécurité et flotte : un seul interlocuteur, une seule facture, une seule équipe qui connaît votre site."],en:["One partner for all your systems","Phones, radio, network, security and fleet. One contact, one invoice, one team that knows your site."]},
+ {ic:"cert",fr:["Techniciens certifiés","Des installations propres, testées et documentées, faites selon les normes des fabricants."],en:["Certified technicians","Clean installations, tested and documented to manufacturer standards."]},
+ {ic:"north",fr:["Régions éloignées et nordiques","Nous nous rendons sur les chantiers, les camps et les communautés que d'autres ne desservent pas."],en:["Remote and northern regions","We reach the job sites, camps and communities others don't serve."]},
+ {ic:"support",fr:["Soutien et entretien continus","Après l'installation, la même équipe assure la maintenance, les réparations et les mises à niveau."],en:["Ongoing support and maintenance","After installation, the same team handles maintenance, repairs and upgrades."]}
+];
+
+const IND = [
+ {first:true,fr:["Gouvernement et secteur public","Municipalités, commissions scolaires, communautés des Premières Nations, organismes provinciaux et d'État, sécurité publique.",["Radios","Contrôle d'accès","Caméras","Appels d'offres"]],en:["Government & Public Sector","Municipalities, school boards, First Nations communities, provincial and state agencies, public safety.",["Radios","Access control","Cameras","Public tenders"]]},
+ {fr:["Commerce et détail","Magasins, bureaux et hôtels qui veulent un réseau fiable et des locaux sécurisés.",["Téléphonie","Wi-Fi invité","Caméras"]],en:["Commercial & Retail","Stores, offices and hotels that need a reliable network and secure premises.",["Phone systems","Guest Wi-Fi","Cameras"]]},
+ {fr:["Industrie, mines et foresterie","Équipes sur le terrain, sites isolés, conditions difficiles.",["Radios","Satellite","Suivi de flotte"]],en:["Industrial, Mining & Forestry","Field crews, isolated sites, tough conditions.",["Radios","Satellite","Fleet tracking"]]},
+ {fr:["Transport et logistique","Savoir où sont vos véhicules et garder vos chauffeurs en contact.",["Suivi GPS","Radios","Wi-Fi d'entrepôt"]],en:["Transport & Logistics","Know where your vehicles are and keep drivers in touch.",["GPS tracking","Radios","Warehouse Wi-Fi"]]},
+ {fr:["Santé et éducation","Hôpitaux, cliniques et écoles où la sécurité et la communication ne peuvent pas flancher.",["Contrôle d'accès","Communications unifiées","Câblage"]],en:["Healthcare & Education","Hospitals, clinics and schools where safety and communication can't fail.",["Access control","Unified communications","Cabling"]]}
+];
+
+const R = [
+ {id:"qc",lg:"FR · EN",fr:["Québec","Grand Montréal et partout au Québec"],en:["Quebec","Greater Montreal and across Quebec"]},
+ {id:"on",lg:"FR · EN",fr:["Nord-Ouest de l'Ontario","Région de Thunder Bay et de Kenora"],en:["Northwestern Ontario","Thunder Bay and Kenora region"]},
+ {id:"ny",lg:"EN",fr:["New York","Service en anglais"],en:["New York","English-language service"]},
+ {id:"vt",lg:"EN",fr:["Vermont","Service en anglais"],en:["Vermont","English-language service"]}
+];
+
+const T = {
+ fr:{util_addr:"5590 av Royalmount, Mont-Royal, QC H4P 1H7",util_tel:"Tél.",util_area:"Québec · Nord-Ouest de l'Ontario · New York · Vermont",
+  nav_services:"Services",nav_ind:"Secteurs",nav_areas:"Régions desservies",nav_about:"À propos",nav_support:"Soutien",nav_contact:"Contact",
+  cta_quote:"Demander une soumission",cta_services:"Nos services",hero_eyebrow:"Intégrateur communications et sécurité",
+  hero_h:"Communications d'affaires et sécurité, installées et soutenues par *une seule équipe locale.*",
+  hero_sub:"Systèmes téléphoniques, radios bidirectionnelles, Wi-Fi, câblage, caméras, contrôle d'accès, satellite et suivi de flotte pour les clients commerciaux et gouvernementaux au Québec, dans le Nord-Ouest de l'Ontario, dans l'État de New York et au Vermont.",
+  net_title:"Zone de service",net_live:"En service",net_hq:"Siège social",
+  marquee:["Téléphonie","Radios","Wi-Fi","Câblage","Caméras","Contrôle d'accès","Satellite","Communications unifiées","Flotte"],
+  f1:"services intégrés sous un même toit",f2:"régions desservies au Canada et aux États-Unis",f3:"langues de service, français et anglais",f4:"seul point de contact, de la soumission au soutien",
+  slots:"Années d'expérience, certifications et logos partenaires : fournis par CRC Telecom",slot_y:"Années",slot_c:"Certification",slot_p:"Partenaire",
+  svc_eyebrow:"Services",svc_h:"Voix, radio, réseau, sécurité et flotte. Un seul partenaire.",svc_p:"Nous fournissons, concevons, installons et entretenons chaque système. Vous parlez à la même équipe du premier relevé de site jusqu'au soutien.",more:"En savoir plus",
+  why_eyebrow:"Pourquoi CRC Telecom",why_h:"Un signal clair, du premier appel au soutien continu.",
+  ind_eyebrow:"Secteurs",ind_h:"Pour ceux qui ne peuvent pas se permettre une panne.",ind_p:"Des bureaux municipaux aux camps miniers, chaque secteur a ses contraintes. Nous adaptons les systèmes à votre réalité sur le terrain.",first:"Prioritaire",
+  map_eyebrow:"Régions desservies",map_h:"Quatre régions, une équipe locale.",map_p:"Du Grand Montréal au nord de l'Ontario, nos techniciens se déplacent là où vos équipes travaillent, y compris dans les régions éloignées et nordiques.",map_leg:"Siège social · Mont-Royal",map_note:"Liste des villes par région à confirmer par CRC Telecom.",
+  cta_h:"Un nouveau site ou une mise à niveau en vue?",cta_p:"Réservez une évaluation de site gratuite. Un technicien certifié visite vos locaux et vous remet une recommandation claire.",cta_book:"Réserver une évaluation gratuite",
+  f_company:"Entreprise",f_follow:"Suivez-nous",f_lang:"Langue",l1:"Politique de confidentialité",l2:"Politique sur les témoins",l3:"Conditions d'utilisation",l4:"Déclaration d'accessibilité",l5:"Gérer les témoins",
+  ck_h:"Votre vie privée",ck_p:"Nous utilisons des témoins essentiels au fonctionnement du site. Les témoins d'analyse restent désactivés tant que vous ne les acceptez pas (Loi 25).",ck_a:"Tout accepter",ck_r:"Tout refuser",ck_c:"Choisir",ribbon:"Concept · Accueil"},
+ en:{util_addr:"5590 av Royalmount, Mont-Royal, QC H4P 1H7",util_tel:"Phone",util_area:"Quebec · Northwestern Ontario · New York · Vermont",
+  nav_services:"Services",nav_ind:"Industries",nav_areas:"Service Areas",nav_about:"About",nav_support:"Support",nav_contact:"Contact",
+  cta_quote:"Request a Quote",cta_services:"Our Services",hero_eyebrow:"Communications & security integrator",
+  hero_h:"Business communications and security, installed and supported by *one local team.*",
+  hero_sub:"Phone systems, two-way radios, Wi-Fi, cabling, cameras, access control, satellite and fleet tracking for commercial and government clients across Quebec, Northwestern Ontario, New York and Vermont.",
+  net_title:"Service area",net_live:"Online",net_hq:"Head office",
+  marquee:["Phone systems","Radios","Wi-Fi","Cabling","Cameras","Access control","Satellite","Unified communications","Fleet"],
+  f1:"integrated services under one roof",f2:"service regions across Canada and the US",f3:"service languages, French and English",f4:"point of contact, from quote to support",
+  slots:"Years in business, certifications and partner logos: supplied by CRC Telecom",slot_y:"Years",slot_c:"Certification",slot_p:"Partner",
+  svc_eyebrow:"Services",svc_h:"Voice, radio, network, security and fleet. One partner.",svc_p:"We supply, design, install and maintain every system. You deal with the same team from the first site survey through to support.",more:"Learn more",
+  why_eyebrow:"Why CRC Telecom",why_h:"A clear signal, from the first call to ongoing support.",
+  ind_eyebrow:"Industries",ind_h:"For teams that can't afford downtime.",ind_p:"From town halls to mining camps, every sector has its own constraints. We fit the systems to how your people actually work.",first:"Priority",
+  map_eyebrow:"Service areas",map_h:"Four regions, one local team.",map_p:"From Greater Montreal to Northern Ontario, our technicians go where your teams work, including remote and northern regions.",map_leg:"Head office · Mont-Royal",map_note:"City list for each region to be confirmed by CRC Telecom.",
+  cta_h:"Planning a new site or upgrade?",cta_p:"Book a free site assessment. A certified technician visits your premises and gives you a clear recommendation.",cta_book:"Book a free site assessment",
+  f_company:"Company",f_follow:"Follow us",f_lang:"Language",l1:"Privacy Policy",l2:"Cookie Policy",l3:"Terms of Use",l4:"Accessibility Statement",l5:"Manage cookies",
+  ck_h:"Your privacy",ck_p:"We use cookies that are essential for the site to work. Analytics cookies stay off until you accept them (Law 25).",ck_a:"Accept all",ck_r:"Refuse all",ck_c:"Choose",ribbon:"Concept · Home"}
+};
+
+let lang = (location.hash==="#en")?"en":"fr";
+let filter = "all";
+const $ = s=>document.querySelector(s), $$ = s=>[...document.querySelectorAll(s)];
+
+function renderHero(){
+  const h = T[lang].hero_h;
+  const parts = h.split("*");
+  let html = "";
+  parts.forEach((p,i)=>{
+    p.trim().split(/\s+/).filter(Boolean).forEach(w=>{
+      const inner = i===1?`<em>${w}</em>`:w;
+      html += `<span class="w"><span>${inner}</span></span> `;
+    });
+  });
+  $("#h1").innerHTML = html;
+}
+function renderAll(){
+  document.documentElement.lang = lang==="fr"?"fr-CA":"en-CA";
+  $$("[data-i18n]").forEach(el=>{const v=T[lang][el.dataset.i18n]; if(typeof v==="string") el.textContent=v;});
+  $$("[data-lang]").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
+  renderHero();
+  $("#netList").innerHTML = R.map(r=>`<li><span class="sig"><i></i><i></i><i></i></span><b>${r[lang][0]}</b><small>${r.lg}</small></li>`).join("");
+  $("#marquee").innerHTML = [0,1].map(()=>T[lang].marquee.map(m=>`<span>${m}</span>`).join("")).join("");
+  $("#filters").innerHTML = Object.keys(G).map(k=>`<button type="button" data-f="${k}" aria-pressed="${k===filter}">${G[k][lang]}</button>`).join("");
+  $("#grid9").innerHTML = S.map(s=>{const d=s[lang];return `<a class="svc" href="#services" data-g="${s.g}">
+      <span class="ico">${svg(s.ic)}</span><span class="tag">${G[s.g][lang]}</span>
+      <h3>${d[0]}</h3><p>${d[1]}</p><ul>${d[2].map(x=>`<li>${x}</li>`).join("")}</ul>
+      <span class="more">${T[lang].more}</span>
+      <svg class="arcs" viewBox="0 0 120 120" aria-hidden="true"><path d="M38 56 A26 26 0 0 1 64 82"/><path d="M38 36 A46 46 0 0 1 84 82"/><path d="M38 16 A66 66 0 0 1 104 82"/></svg></a>`}).join("");
+  applyFilter();
+  $("#points").innerHTML = W.map((w,i)=>`<li class="pt" data-i="${i}"><span class="k">${svg(w.ic)}</span><div><h3>${w[lang][0]}</h3><p>${w[lang][1]}</p></div></li>`).join("");
+  $("#rows").innerHTML = IND.map(r=>{const d=r[lang];return `<a class="row" href="#secteurs"><h3>${d[0]}${r.first?` <span class="first">${T[lang].first}</span>`:""}</h3><div><p>${d[1]}</p><div class="chips">${d[2].map(c=>`<span>${c}</span>`).join("")}</div></div><span class="go">${svg("arrow")}</span></a>`}).join("");
+  $("#regionList").innerHTML = R.map(r=>`<li><button type="button" data-r="${r.id}" aria-pressed="false"><span class="sw"></span><span><b>${r[lang][0]}</b><small>${r[lang][1]}</small></span><span class="lg">${r.lg}</span></button></li>`).join("");
+  $("#fServices").innerHTML = S.map(s=>`<li><a href="#services">${s[lang][0]}</a></li>`).join("");
+  bindDynamic();
+  setWhy(whyStep);
+}
+function applyFilter(){
+  $$(".svc").forEach(c=>c.classList.toggle("dim", filter!=="all" && c.dataset.g!==filter));
+  $$("#filters button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.f===filter)));
+}
+function bindDynamic(){
+  $$("#filters button").forEach(b=>b.onclick=()=>{filter=b.dataset.f;applyFilter();});
+  $$("#regionList button").forEach(b=>{
+    b.onclick=()=>{const on=b.getAttribute("aria-pressed")!=="true";$$("#regionList button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed",String(on));map.focus(on?b.dataset.r:null);};
+    b.onmouseenter=()=>map.hover(b.dataset.r); b.onmouseleave=()=>map.hover(null);
+  });
+}
+
+/* ---------- language switch ---------- */
+function setLang(l, animate){
+  if(l===lang) return; lang=l;
+  try{ history.replaceState(null,"","#"+l);}catch(e){ location.hash=l; }
+  renderAll(); if(animate) heroIntro(true);
+  if(hasGsap) ScrollTrigger.refresh();
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-lang]"); if(b) setLang(b.dataset.lang,true);});
+addEventListener("hashchange",()=>{const l=location.hash==="#en"?"en":location.hash==="#fr"?"fr":null; if(l) setLang(l,true);});
+
+/* ---------- hero canvas: signal arcs from one origin ---------- */
+function heroCanvas(){
+  const c=$("#heroCanvas"), ctx=c.getContext("2d");
+  let w,h,dpr,ox,oy,mx=0,my=0,tx=0,ty=0,t0=performance.now(),vis=true;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  size(); addEventListener("resize",size);
+  c.parentElement.addEventListener("pointermove",e=>{const r=c.getBoundingClientRect();tx=(e.clientX-r.left)/r.width-.5;ty=(e.clientY-r.top)/r.height-.5;});
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;}).observe(c);
+  function frame(now){
+    requestAnimationFrame(frame); if(!vis) return;
+    const t=(now-t0)/1000;
+    mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+    const wide=w>1080;
+    ox=(wide?w*.64:w*.85)+mx*40; oy=(wide?h*.9:h*.96)+my*30;
+    ctx.clearRect(0,0,w,h);
+    // dot grid
+    const gs=34; ctx.fillStyle="rgba(94,234,212,.09)";
+    for(let x=(w%gs)/2;x<w;x+=gs) for(let y=(h%gs)/2;y<h;y+=gs){ctx.beginPath();ctx.arc(x,y,1,0,6.283);ctx.fill();}
+    const maxR=Math.hypot(w,h)*.95, gap=58, speed=reduce?0:38;
+    const n=Math.ceil(maxR/gap)+1;
+    for(let i=0;i<n;i++){
+      const r=((t*speed+i*gap)%(n*gap));
+      if(r<14) continue;
+      const k=r/maxR; const a=Math.max(0,(1-k))*.55;
+      const teal = i%5===0;
+      ctx.strokeStyle = teal?`rgba(94,234,212,${a})`:`rgba(255,255,255,${a*.5})`;
+      ctx.lineWidth = teal?2.2:1.2; ctx.lineCap="round";
+      ctx.beginPath(); ctx.arc(ox,oy,r,-Math.PI*.98,-Math.PI*.02); ctx.stroke();
+    }
+    const pulse=(Math.sin(t*2.4)+1)/2;
+    ctx.fillStyle=`rgba(20,184,166,${.18+.12*pulse})`;ctx.beginPath();ctx.arc(ox,oy,8+6+pulse*8,0,6.283);ctx.fill();
+    ctx.fillStyle="#14B8A6";ctx.beginPath();ctx.arc(ox,oy,8,0,6.283);ctx.fill();
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- map: dot-matrix regions ---------- */
+const POLY = {
+ qc:[[-79.5,51.5],[-79.5,47.4],[-78.8,46.3],[-77.2,45.8],[-75.8,45.5],[-74.5,45.3],[-74.7,45.0],[-71.5,45.0],[-71.1,45.3],[-70.3,45.9],[-70.0,46.7],[-69.2,47.4],[-68.3,47.4],[-67.8,47.1],[-66.4,48.0],[-64.3,48.4],[-64.5,49.0],[-66.2,49.2],[-68.6,48.6],[-69.8,47.8],[-70.9,47.1],[-70.0,47.9],[-68.0,49.2],[-66.0,50.2],[-62.0,50.2],[-59.0,50.5],[-57.1,51.4],[-60.0,52.0],[-64.0,52.0],[-64.5,52.8],[-67.0,52.8],[-67.5,54.2],[-66.0,55.0],[-64.6,56.5],[-64.5,60.3],[-67.0,58.6],[-69.3,58.9],[-70.5,61.0],[-73.8,62.4],[-77.6,62.5],[-77.5,60.8],[-78.0,58.5],[-76.6,56.4],[-77.3,55.5],[-79.0,54.6],[-78.7,52.2]],
+ on:[[-95.15,49.0],[-95.15,52.8],[-89.0,56.85],[-87.6,56.0],[-85.0,55.3],[-85.0,48.0],[-86.4,48.7],[-88.2,48.3],[-89.2,48.4],[-89.6,48.0],[-90.8,48.2],[-92.5,48.5],[-93.8,48.6],[-94.7,48.8]],
+ ny:[[-79.76,42.0],[-79.76,42.27],[-78.9,42.9],[-79.05,43.25],[-77.6,43.3],[-76.2,43.5],[-76.3,44.0],[-75.8,44.4],[-74.7,45.0],[-73.35,45.0],[-73.3,44.5],[-73.4,43.6],[-73.25,42.75],[-73.5,42.05],[-73.5,41.2],[-73.7,41.0],[-74.0,40.6],[-74.25,40.5],[-74.7,41.35],[-75.1,41.8],[-75.35,42.0]],
+ li:[[-74.0,40.6],[-73.0,40.75],[-71.86,41.07],[-72.6,40.95],[-73.6,40.95]],
+ vt:[[-73.35,45.0],[-71.5,45.0],[-71.6,44.6],[-72.05,44.3],[-72.4,43.6],[-72.55,42.73],[-73.25,42.74],[-73.3,43.6],[-73.4,44.0]]
+};
+const CITIES=[{n:"Montréal",p:[-73.6,45.5],hq:true},{n:"Québec",p:[-71.2,46.8]},{n:"Thunder Bay",p:[-89.25,48.4]},{n:"Kenora",p:[-94.5,49.77]},{n:"Albany",p:[-73.75,42.65]},{n:"Burlington",p:[-73.2,44.48]}];
+const map = (function(){
+  const c=$("#mapCanvas"), ctx=c.getContext("2d");
+  const B={x0:-97,x1:-56,y0:39.5,y1:63.5}, kx=Math.cos(51*Math.PI/180);
+  let w,h,dpr,dots=[],start=null,hov=null,foc=null,vis=false,t0=performance.now();
+  function inPoly(x,y,p){let ins=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const xi=p[i][0],yi=p[i][1],xj=p[j][0],yj=p[j][1];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins;}return ins;}
+  let sc,offx,offy;
+  function proj(lon,lat){return [offx+(lon-B.x0)*kx*sc, offy+(B.y1-lat)*sc];}
+  function unproj(x,y){return [(x-offx)/(kx*sc)+B.x0, B.y1-(y-offy)/sc];}
+  function size(){
+    dpr=Math.min(devicePixelRatio||1,2);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    const gw=(B.x1-B.x0)*kx, gh=B.y1-B.y0; sc=Math.min(w/gw,h/gh)*.98; offx=(w-gw*sc)/2; offy=(h-gh*sc)/2-h*.02;
+    const step=Math.max(6,w/80); dots=[];
+    const hq=proj(-73.6,45.5);
+    for(let y=step/2;y<h;y+=step) for(let x=step/2;x<w;x+=step){
+      const [lo,la]=unproj(x,y); let reg=null;
+      for(const k in POLY){ if(inPoly(lo,la,POLY[k])){reg=k==="li"?"ny":k;break;} }
+      dots.push({x,y,reg,d:Math.hypot(x-hq[0],y-hq[1])});
+    }
+  }
+  size(); addEventListener("resize",size);
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting; if(vis&&start===null) start=performance.now();},{threshold:.25}).observe(c);
+  function frame(now){
+    requestAnimationFrame(frame); if(!vis) return;
+    const t=(now-t0)/1000, since=reduce?99:(now-(start||now))/1000;
+    ctx.clearRect(0,0,w,h);
+    const hq=proj(-73.6,45.5), front=since*Math.max(w,h)*.55;
+    const step=Math.max(6,w/80), rr=step*.2;
+    for(const d of dots){
+      if(!d.reg){ctx.fillStyle="rgba(148,180,210,.13)";ctx.beginPath();ctx.arc(d.x,d.y,rr*.8,0,6.283);ctx.fill();continue;}
+      const lit = d.d<front;
+      const emph = (hov===d.reg||foc===d.reg), mute=(foc&&foc!==d.reg&&!emph)||(hov&&hov!==d.reg&&!foc);
+      let a = lit?(mute?.35:1):.15;
+      const wave = Math.max(0,1-Math.abs(((d.d-(t*90)%(Math.max(w,h)*1.2))))/24);
+      ctx.fillStyle = emph? `rgba(94,234,212,${a})` : wave>0&&lit ? `rgba(255,255,255,${.6+wave*.4})` : `rgba(20,184,166,${a*.9})`;
+      ctx.beginPath();ctx.arc(d.x,d.y,rr*(emph?1.55:1.25)+wave*rr*.6,0,6.283);ctx.fill();
+    }
+    // HQ pulses
+    for(let i=0;i<3;i++){const p=((t*.6+i/3)%1);ctx.strokeStyle=`rgba(94,234,212,${(1-p)*.8})`;ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(hq[0],hq[1],6+p*w*.12,0,6.283);ctx.stroke();}
+    // links HQ -> cities
+    ctx.font=`500 ${Math.max(10,w/52)}px Inter, system-ui, sans-serif`;
+    CITIES.forEach((ci,idx)=>{
+      const [x,y]=proj(ci.p[0],ci.p[1]);
+      const appear=Math.min(1,Math.max(0,(since-.6-idx*.15)*2));
+      if(appear<=0) return;
+      if(!ci.hq){
+        const cx=(x+hq[0])/2, cy=Math.min(y,hq[1])-Math.abs(x-hq[0])*.25-20;
+        ctx.strokeStyle=`rgba(94,234,212,${.35*appear})`;ctx.lineWidth=1;ctx.setLineDash([3,4]);
+        ctx.beginPath();ctx.moveTo(hq[0],hq[1]);ctx.quadraticCurveTo(cx,cy,x,y);ctx.stroke();ctx.setLineDash([]);
+        const p=(t*.35+idx*.21)%1, q=1-p;
+        const bx=q*q*hq[0]+2*q*p*cx+p*p*x, by=q*q*hq[1]+2*q*p*cy+p*p*y;
+        ctx.fillStyle="#5EEAD4";ctx.beginPath();ctx.arc(bx,by,2.2,0,6.283);ctx.fill();
+      }
+      ctx.fillStyle=ci.hq?"#14B8A6":"#FFFFFF";ctx.beginPath();ctx.arc(x,y,ci.hq?6:3.2,0,6.283);ctx.fill();
+      ctx.fillStyle=`rgba(255,255,255,${.9*appear})`;
+      const right = ci.n==="Kenora"||ci.n==="Thunder Bay";
+      ctx.textAlign=right?"left":"right";
+      ctx.fillText(ci.n, x+(right?9:-9), y+4);
+    });
+  }
+  requestAnimationFrame(frame);
+  return {hover:r=>{hov=r;},focus:r=>{foc=r;}};
+})();
+
+/* ---------- why: 4 steps light the emblem ---------- */
+let whyStep=0;
+function setWhy(i){
+  whyStep=i;
+  $$(".pt").forEach((p,k)=>p.classList.toggle("on",k<=i));
+  ["#em0","#em1","#em2","#em3"].forEach((s,k)=>$(s).classList.toggle("on",k<=i));
+}
+
+/* ---------- header shadow ---------- */
+addEventListener("scroll",()=>$("#hdr").classList.toggle("scrolled",scrollY>10),{passive:true});
+
+/* ---------- cookie banner (demo, remembers per viewer) ---------- */
+const ck=$("#cookie");
+let ckSaved=null; try{ckSaved=localStorage.getItem("crc-ck");}catch(e){}
+if(!ckSaved) setTimeout(()=>{ck.hidden=false; if(hasGsap&&!reduce) gsap.from(ck,{y:30,opacity:0,duration:.6,ease:"power3.out"});},3500);
+ck.addEventListener("click",e=>{const b=e.target.closest("[data-ck]"); if(!b) return; try{localStorage.setItem("crc-ck",b.dataset.ck);}catch(err){} ck.hidden=true;});
+$("#cookieReopen").addEventListener("click",e=>{e.preventDefault(); ck.hidden=false;});
+
+/* ---------- motion ---------- */
+function heroIntro(again){
+  if(!hasGsap||reduce) return;
+  gsap.fromTo("#h1 .w>span",{yPercent:110},{yPercent:0,duration:1.05,ease:"power4.out",stagger:.045,delay:again?0:.15});
+  if(!again) gsap.from(".h-in",{y:28,opacity:0,duration:1,ease:"power3.out",stagger:.12,delay:.55});
+}
+
+renderAll();
+heroCanvas();
+$$(".count").forEach(el=>el.textContent=el.dataset.to);
+
+if(hasGsap && !reduce){
+  gsap.registerPlugin(ScrollTrigger);
+  // smooth scroll
+  if(window.Lenis){
+    const lenis=new Lenis({lerp:.1,smoothWheel:true});
+    lenis.on("scroll",ScrollTrigger.update);
+    gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
+    document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]'); if(!a) return; const id=a.getAttribute("href"); if(id.length<2) return; const el=document.querySelector(id==="#top"?"body":id); if(el){e.preventDefault(); lenis.scrollTo(el,{offset:-80});}});
+  }
+  heroIntro(false);
+
+  // hero parallax out
+  gsap.to(".hero .wrap",{yPercent:18,opacity:.2,ease:"none",scrollTrigger:{trigger:".hero",start:"top top",end:"bottom top",scrub:true}});
+
+  // marquee linked to scroll velocity
+  const track=$("#marquee"); let x=0, v=1;
+  ScrollTrigger.create({onUpdate:s=>{v=1+Math.min(8,Math.abs(s.getVelocity())/300);}});
+  gsap.ticker.add(()=>{const half=track.scrollWidth/2; x-=v*.8; v+=(1-v)*.06; if(-x>=half) x+=half; track.style.transform=`translate3d(${x}px,0,0)`;});
+
+  // generic reveals
+  ScrollTrigger.batch(".rv",{start:"top 88%",once:true,onEnter:els=>gsap.fromTo(els,{y:40,opacity:0},{y:0,opacity:1,duration:1,ease:"power3.out",stagger:.1})});
+  // counters
+  $$(".count").forEach(el=>{const o={v:0};ScrollTrigger.create({trigger:el,start:"top 90%",once:true,onEnter:()=>gsap.to(o,{v:+el.dataset.to,duration:1.4,ease:"power2.out",onUpdate:()=>el.textContent=Math.round(o.v)})});});
+  gsap.from(".fact",{y:30,opacity:0,stagger:.1,duration:.9,ease:"power3.out",scrollTrigger:{trigger:".trust",start:"top 85%"}});
+  // services grid wave
+  ScrollTrigger.create({trigger:"#grid9",start:"top 80%",once:true,onEnter:()=>gsap.fromTo(".svc",{y:60,opacity:0,clipPath:"inset(0 0 100% 0)"},{y:0,opacity:1,clipPath:"inset(0 0 0% 0)",duration:1.1,ease:"power4.out",stagger:{each:.07,grid:[3,3],from:"start"},clearProps:"clipPath,transform"})});
+  // industries rows slide
+  ScrollTrigger.create({trigger:"#rows",start:"top 80%",once:true,onEnter:()=>gsap.fromTo(".row",{x:-40,opacity:0},{x:0,opacity:1,duration:.9,ease:"power3.out",stagger:.09})});
+  // CTA arcs
+  gsap.fromTo(".cta svg.bg",{rotate:-20,scale:.8},{rotate:0,scale:1.05,ease:"none",scrollTrigger:{trigger:".cta",start:"top bottom",end:"bottom top",scrub:true}});
+  gsap.fromTo(".ftr .big",{xPercent:-8},{xPercent:0,ease:"none",scrollTrigger:{trigger:".ftr",start:"top bottom",end:"bottom bottom",scrub:true}});
+
+  // pinned "why" on desktop
+  const mm=gsap.matchMedia();
+  mm.add("(min-width: 901px)",()=>{
+    setWhy(0);
+    const st=ScrollTrigger.create({trigger:".why",start:"top top",end:"+=260%",pin:true,scrub:true,
+      onUpdate:s=>{const i=Math.min(3,Math.floor(s.progress*4)); if(i!==whyStep) setWhy(i); gsap.set("#whyBar",{scaleX:s.progress});}});
+    gsap.to(".emblem .ring",{attr:{r:70},opacity:0,duration:2.6,repeat:-1,stagger:1.3,ease:"power1.out",startAt:{attr:{r:10},opacity:.8}});
+    gsap.fromTo(".emblem",{rotate:-6,scale:.92},{rotate:0,scale:1,ease:"none",scrollTrigger:{trigger:".why",start:"top top",end:"+=260%",scrub:true}});
+    return ()=>{st.kill(); setWhy(3);};
+  });
+  mm.add("(max-width: 900px)",()=>{setWhy(3);});
+} else {
+  setWhy(3);
+}
+})();
+</script>
