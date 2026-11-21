@@ -20,6 +20,8 @@ const P: Record<string, React.ReactNode> = {
   support: <><path d="M4 13a8 8 0 0 1 16 0" /><rect x="3" y="13" width="4" height="6" rx="1.5" /><rect x="17" y="13" width="4" height="6" rx="1.5" /><path d="M19 19a4 4 0 0 1-4 3h-2" /></>,
   menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   close: <path d="M6 6l12 12M18 6L6 18" />,
+  pause: <path d="M9 5v14M15 5v14" />,
+  play: <path d="M7 4.5v15l12-7.5z" />,
 };
 
 export function Icon({ name, className = "size-6", strokeWidth = 1.7 }: { name: string; className?: string; strokeWidth?: number }) {

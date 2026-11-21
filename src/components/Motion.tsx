@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { usePathname } from "@/i18n/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
 
-/** Плавный скролл (Lenis) + мягкое появление блоков с атрибутом data-reveal.
+/** Плавный скролл (Lenis), появление блоков с data-reveal, раскрытие заголовков .h-section по строкам,
+ *  «магнитные» кнопки с data-magnetic.
  *  Всё отключается при prefers-reduced-motion. Контент виден и без JS. */
 export function Motion() {
   const pathname = usePathname();
@@ -34,7 +36,35 @@ export function Motion() {
       });
     });
     const id = setTimeout(() => ScrollTrigger.refresh(), 300);
-    return () => { clearTimeout(id); ctx.revert(); };
+
+    // Заголовки секций: строки выезжают из-под маски. SplitText сам ставит aria-label, текст читается целиком.
+    gsap.registerPlugin(SplitText);
+    const splits: SplitText[] = [];
+    let alive = true;
+    document.fonts.ready.then(() => {
+      if (!alive) return;
+      gsap.utils.toArray<HTMLElement>(".h-section").forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
+        const sp = SplitText.create(el, { type: "lines", mask: "lines", linesClass: "split-line", aria: "auto" });
+        splits.push(sp);
+        gsap.from(sp.lines, { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.09, scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+      });
+    });
+
+    // Магнитные кнопки: только мышь, не тач.
+    const offs: (() => void)[] = [];
+    if (matchMedia("(pointer: fine)").matches) {
+      document.querySelectorAll<HTMLElement>("[data-magnetic]").forEach((el) => {
+        const xTo = gsap.quickTo(el, "x", { duration: 0.5, ease: "power3.out" });
+        const yTo = gsap.quickTo(el, "y", { duration: 0.5, ease: "power3.out" });
+        const move = (e: PointerEvent) => { const r = el.getBoundingClientRect(); xTo((e.clientX - r.left - r.width / 2) * 0.25); yTo((e.clientY - r.top - r.height / 2) * 0.35); };
+        const leave = () => { xTo(0); yTo(0); };
+        el.addEventListener("pointermove", move); el.addEventListener("pointerleave", leave);
+        offs.push(() => { el.removeEventListener("pointermove", move); el.removeEventListener("pointerleave", leave); gsap.set(el, { clearProps: "transform" }); });
+      });
+    }
+
+    return () => { alive = false; clearTimeout(id); ctx.revert(); splits.forEach((s) => s.revert()); offs.forEach((f) => f()); };
   }, [pathname]);
 
   return null;

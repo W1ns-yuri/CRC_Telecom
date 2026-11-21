@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { HeroCanvas } from "./HeroCanvas";
 import { Icon } from "./Icon";
+import { Marquee } from "./Marquee";
 import { SITE } from "@/lib/site";
 
 /**
@@ -26,6 +27,10 @@ type Props = {
   services: string;
   call: string;
   photoAlt: string;
+  marquee: string[];
+  marqueeLabel: string;
+  pauseLabel: string;
+  playLabel: string;
 };
 
 /** Разбиваем заголовок на слова для анимации появления. Текст остаётся цельным для скринридеров и SEO. */
@@ -39,7 +44,7 @@ function Words({ text, from, className }: { text: string; from: number; classNam
   ));
 }
 
-export function Hero({ eyebrow, h1a, h1b, sub, quote, services, call, photoAlt }: Props) {
+export function Hero({ eyebrow, h1a, h1b, sub, quote, services, call, photoAlt, marquee, marqueeLabel, pauseLabel, playLabel }: Props) {
   const nA = h1a.split(" ").length;
   return (
     <section
@@ -68,21 +73,17 @@ export function Hero({ eyebrow, h1a, h1b, sub, quote, services, call, photoAlt }
           {sub}
         </p>
         <div className="hero-fade mt-6 flex flex-wrap gap-3 sm:mt-7 lg:mt-10" style={{ animationDelay: "620ms" }}>
-          <Link href="/contact" className="btn btn-teal">{quote}<Icon name="arrow" strokeWidth={2} /></Link>
-          <Link href="/services" className="btn btn-ghost">{services}</Link>
+          <Link href="/contact" className="btn btn-teal" data-magnetic>{quote}<Icon name="arrow" strokeWidth={2} /></Link>
+          <Link href="/services" className="btn btn-ghost" data-magnetic>{services}</Link>
           <a href={SITE.phoneHref} className="btn btn-ghost sm:hidden" aria-label={`${call} ${SITE.phone}`}>
             <Icon name="phone" strokeWidth={1.9} />{SITE.phone}
           </a>
         </div>
       </div>
 
-      {/* Нижняя полоса: быстрые контакты. На телефоне номер уже есть кнопкой выше. */}
-      <div className="hero-fade relative hidden border-t border-white/10 sm:block" style={{ animationDelay: "760ms" }}>
-        <ul className="wrap flex flex-wrap items-center gap-x-10 gap-y-2 py-5 text-[15px]">
-          <li><a href={SITE.phoneHref} className="flex items-center gap-2.5 font-semibold text-white no-underline hover:text-teal-light"><Icon name="phone" className="size-[18px] text-teal-light" />{SITE.phone}</a></li>
-          <li><a href={`mailto:${SITE.email}`} className="flex items-center gap-2.5 text-white no-underline hover:text-teal-light"><Icon name="mail" className="size-[18px] text-teal-light" />{SITE.email}</a></li>
-          <li className="hidden items-center gap-2.5 lg:flex"><Icon name="pin" className="size-[18px] shrink-0 text-teal-light" />{SITE.address.full}</li>
-        </ul>
+      {/* Нижняя полоса: бегущая строка с услугами (телефон и почта уже есть в шапке) */}
+      <div className="hero-fade" style={{ animationDelay: "760ms" }}>
+        <Marquee items={marquee} label={marqueeLabel} pause={pauseLabel} play={playLabel} />
       </div>
     </section>
   );

@@ -20,6 +20,7 @@
     "ctaServices": "Our Services",
     "quickTitle": "Talk to a technician",
     "quickText": "A project, an outage, a question? Call or write to us.",
+    "marqueePause": "Pause the animation", "marqueePlay": "Play the animation",
     "photoAlt": "CRC Telecom technician at work on a client site",
     "photoNote": "Photo of a CRC technician or vehicle to be supplied",
     "trust": ["Head office in Mont-Royal", "Commercial and government clients", "Service in French and English", "One point of contact"],
