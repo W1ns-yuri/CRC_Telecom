@@ -25,7 +25,7 @@ export default async function AreasPage({ params }: P) {
       <SetAlternates alt={altPaths("/areas")} />
       <PageHero title={t("areas.h")} lead={t("areas.p")} crumbs={[{ label: t("nav.home"), href: "/", url: altPaths("/")[locale] }, { label: t("nav.areas") }]} />
       <section className="wrap py-16 lg:py-24">
-        <CoverageMap label={t("home.mapLabel")} note={t("home.mapNote")}
+        <CoverageMap hqLabel={t("common.headOffice")} label={t("home.mapLabel")} note={t("home.mapNote")}
           regions={AREAS.map((a) => ({ id: a.id, name: tr(a.name, locale), sub: tr(a.tagline, locale), languages: a.languages, slug: tr(a.slug, locale) }))} />
       </section>
       <CtaBand />

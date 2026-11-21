@@ -118,7 +118,7 @@ export default async function Home({ params }: P) {
           </div>
           <p className="lede">{t("mapP")}</p>
         </div>
-        <CoverageMap
+        <CoverageMap hqLabel={tc("headOffice")}
           label={t("mapLabel")}
           note={t("mapNote")}
           regions={AREAS.map((a) => ({ id: a.id, name: tr(a.name, locale), sub: tr(a.places, locale)[0], languages: a.languages, slug: tr(a.slug, locale) }))}
