@@ -59,6 +59,15 @@
   .prose-legal p + p { @apply mt-3; }
 }
 
+/* Хиро: слова выезжают из-под маски, остальное проявляется. Только transform/opacity. */
+.hero-word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.hero-word > span { display: inline-block; animation: hero-rise 0.9s cubic-bezier(0.2, 0.7, 0.1, 1) both; }
+.hero-fade { animation: hero-fade 0.8s ease-out both; }
+.hero-photo { animation: hero-zoom 14s ease-out both; }
+@keyframes hero-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes hero-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes hero-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

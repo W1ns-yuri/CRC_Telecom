@@ -64,9 +64,9 @@ export function CookieConsent() {
         </>
       )}
       {open && (
-        <div role="dialog" aria-labelledby="ck-title" aria-live="polite" className="fixed inset-x-4 bottom-4 z-[70] max-w-[440px] rounded-media border border-line bg-white p-5 text-[14px] text-slate shadow-[0_30px_60px_-30px_rgba(11,37,69,.5)] sm:left-auto sm:right-6 sm:bottom-6">
-          <h2 id="ck-title" className="text-[16px] font-semibold">{t("title")}</h2>
-          <p className="mt-1.5">{t("text")} <Link className="link" href={{ pathname: "/legal/[slug]", params: { slug: cookieSlug } }}>{t("policy")}</Link>.</p>
+        <div role="dialog" aria-labelledby="ck-title" aria-live="polite" className="fixed inset-x-0 bottom-0 z-[70] max-h-[85svh] overflow-y-auto rounded-t-media border-t border-line bg-white px-4 pt-3.5 pb-[max(14px,env(safe-area-inset-bottom))] text-[13px] leading-snug text-slate shadow-[0_-20px_50px_-30px_rgba(11,37,69,.5)] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:max-w-[440px] sm:rounded-media sm:border sm:p-5 sm:text-[14px]">
+          <h2 id="ck-title" className="sr-only text-[16px] font-semibold sm:not-sr-only">{t("title")}</h2>
+          <p className="sm:mt-1">{t("text")} <Link className="link" href={{ pathname: "/legal/[slug]", params: { slug: cookieSlug } }}>{t("policy")}</Link>.</p>
           {details && (
             <fieldset className="mt-4 grid gap-3 border-t border-line pt-4">
               <legend className="sr-only">{t("choose")}</legend>
@@ -75,13 +75,13 @@ export function CookieConsent() {
               <Row id="ck-m" label={t("marketing")} desc={t("marketingD")} checked={marketing} onChange={setMarketing} />
             </fieldset>
           )}
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2 sm:mt-4">
             {details ? (
-              <button type="button" className="btn btn-navy !px-4 !py-2.5 !text-[13.5px]" onClick={() => save(analytics, marketing)}>{t("save")}</button>
+              <button type="button" className="btn btn-navy !px-3.5 !py-2.5 !text-[13.5px]" onClick={() => save(analytics, marketing)}>{t("save")}</button>
             ) : (
               <>
-                <button type="button" className="btn btn-navy !px-4 !py-2.5 !text-[13.5px]" onClick={() => save(true, true)}>{t("accept")}</button>
-                <button type="button" className="btn btn-outline !px-4 !py-2.5 !text-[13.5px]" onClick={() => save(false, false)}>{t("refuse")}</button>
+                <button type="button" className="btn btn-navy !px-3.5 !py-2.5 !text-[13.5px]" onClick={() => save(true, true)}>{t("accept")}</button>
+                <button type="button" className="btn btn-outline !px-3.5 !py-2.5 !text-[13.5px]" onClick={() => save(false, false)}>{t("refuse")}</button>
                 <button type="button" className="px-2 text-[13.5px] font-semibold text-navy underline underline-offset-4" onClick={() => setDetails(true)}>{t("choose")}</button>
               </>
             )}
