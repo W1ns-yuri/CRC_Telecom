@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { HeroCanvas } from "@/components/HeroCanvas";
+import { Hero } from "@/components/Hero";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { WhyPinned } from "@/components/WhyPinned";
 import { CoverageMap } from "@/components/CoverageMap";
@@ -37,32 +37,8 @@ export default async function Home({ params }: P) {
     <>
       <SetAlternates alt={altPaths("/")} />
 
-      {/* 1. Hero. Когда CRC пришлёт фото (техник на объекте / машина), оно ляжет под canvas с тёмным оверлеем. */}
-      <section className="on-dark relative isolate overflow-hidden bg-navy text-on-navy" aria-labelledby="h1">
-        <HeroCanvas />
-        <div className="wrap grid items-end gap-12 pt-16 pb-16 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] lg:gap-14 lg:pt-24 lg:pb-24">
-          <div>
-            <p className="eyebrow">{t("eyebrow")}</p>
-            <h1 id="h1" className="mt-6 text-[clamp(34px,4.6vw,62px)] font-semibold leading-[1.05] tracking-[-0.025em] text-white">
-              {t("h1a")} <span className="text-teal-light">{t("h1b")}</span>
-            </h1>
-            <p className="mt-6 max-w-[62ch] text-[clamp(16px,1.3vw,18.5px)] text-on-navy">{t("sub")}</p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn btn-teal">{tn("quote")}<Icon name="arrow" strokeWidth={2} /></Link>
-              <Link href="/services" className="btn btn-ghost">{t("ctaServices")}</Link>
-            </div>
-          </div>
-          <aside aria-labelledby="quick-h" className="rounded-media border border-teal-light/15 bg-navy-2/85 p-6 backdrop-blur-md">
-            <h2 id="quick-h" className="text-[19px] font-semibold text-white">{t("quickTitle")}</h2>
-            <p className="mt-1.5 text-[15px] text-on-navy">{t("quickText")}</p>
-            <ul className="mt-5 grid gap-1 text-[15px]">
-              <li><a href={SITE.phoneHref} className="flex items-center gap-3 rounded-ctl py-2.5 font-semibold text-white no-underline hover:text-teal-light"><Icon name="phone" className="size-5 text-teal-light" />{SITE.phone}</a></li>
-              <li><a href={`mailto:${SITE.email}`} className="flex items-center gap-3 rounded-ctl py-2.5 text-white no-underline hover:text-teal-light"><Icon name="mail" className="size-5 text-teal-light" />{SITE.email}</a></li>
-              <li className="flex items-start gap-3 py-2.5 text-on-navy"><Icon name="pin" className="size-5 shrink-0 text-teal-light" />{SITE.address.full}</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
+      {/* 1. Hero */}
+      <Hero eyebrow={t("eyebrow")} h1a={t("h1a")} h1b={t("h1b")} sub={t("sub")} quote={tn("quote")} services={t("ctaServices")} call={tn("call")} photoAlt={t("photoAlt")} />
 
       {/* 2. Trust bar: факты из брифа + места под данные, которые пришлёт CRC */}
       <section aria-label={t("trustSlots")} className="border-b border-line">
