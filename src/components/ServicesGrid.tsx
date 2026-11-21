@@ -22,7 +22,7 @@ export function ServicesGrid({ items, groups, allLabel, more, filterLabel }: { i
         {items.map((s) => {
           const dim = f !== "all" && s.group !== f;
           return (
-            <li key={s.id} className={`border-r border-b border-line transition-opacity duration-300 ${dim ? "opacity-30" : ""}`}>
+            <li key={s.id} data-reveal className={`border-r border-b border-line transition-[opacity,filter] duration-500 ${dim ? "opacity-30 grayscale" : ""}`}>
               <Link href={{ pathname: "/services/[slug]", params: { slug: s.slug } }} tabIndex={dim ? -1 : undefined}
                 className="group relative flex h-full flex-col gap-3 overflow-hidden bg-white p-6 text-slate no-underline transition-colors duration-500 hover:bg-navy focus-visible:bg-navy lg:min-h-[300px] lg:p-7">
                 <span className="flex items-start justify-between">

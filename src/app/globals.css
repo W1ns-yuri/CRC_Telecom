@@ -82,6 +82,15 @@
 .cov-lit .cov-pulse-2 { animation-delay: 1.3s; }
 @keyframes cov-pulse { from { transform: scale(1); opacity: 0.9; } to { transform: scale(5); opacity: 0; } }
 
+/* Бегущая строка */
+.marquee-track { animation: marquee 48s linear infinite; }
+.marquee:hover .marquee-track, .marquee[data-paused] .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Заголовки секций: строки выезжают из-под маски (разметку строк делает Motion.tsx) */
+.split-line { will-change: transform; }
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee-btn { display: none; }
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }

@@ -52,7 +52,7 @@ export async function CtaBand({ title, text, button }: { title?: string; text?: 
           <h2 id="cta-h" className="text-[clamp(28px,4vw,54px)] font-semibold leading-[1.05] tracking-[-0.025em]">{title ?? t("ctaH")}</h2>
           <p className="mt-4 max-w-[52ch] text-[18px] text-navy">{text ?? t("ctaP")}</p>
         </div>
-        <Link href="/contact" className="btn btn-navy justify-self-start" data-reveal>{button ?? t("ctaBtn")}<Icon name="arrow" strokeWidth={2} /></Link>
+        <Link href="/contact" className="btn btn-navy justify-self-start" data-reveal data-magnetic>{button ?? t("ctaBtn")}<Icon name="arrow" strokeWidth={2} /></Link>
       </div>
     </section>
   );

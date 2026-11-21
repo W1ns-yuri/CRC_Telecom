@@ -38,7 +38,8 @@ export default async function Home({ params }: P) {
       <SetAlternates alt={altPaths("/")} />
 
       {/* 1. Hero */}
-      <Hero eyebrow={t("eyebrow")} h1a={t("h1a")} h1b={t("h1b")} sub={t("sub")} quote={tn("quote")} services={t("ctaServices")} call={tn("call")} photoAlt={t("photoAlt")} />
+      <Hero eyebrow={t("eyebrow")} h1a={t("h1a")} h1b={t("h1b")} sub={t("sub")} quote={tn("quote")} services={t("ctaServices")} call={tn("call")} photoAlt={t("photoAlt")}
+        marquee={SERVICES.map((s) => tr(s.name, locale))} marqueeLabel={tn("services")} pauseLabel={t("marqueePause")} playLabel={t("marqueePlay")} />
 
       {/* 2. Trust bar: факты из брифа + места под данные, которые пришлёт CRC */}
       <section aria-label={t("trustSlots")} className="border-b border-line">
